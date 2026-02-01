@@ -4,17 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RGC Science Club | Center for Excellence</title>
+    <meta name="description" content="Official website of RGC Science Club. Where Curiosity Meets Innovation.">
     
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* --- ELITE THEME VARIABLES (From Code 2) --- */
+        /* --- ELITE THEME VARIABLES --- */
         :root {
             --primary: #0a192f;    /* Deep Navy */
             --secondary: #112240;  /* Card Background */
             --accent: #64ffda;     /* Cyan Glow */
-            --gold: #ffd700;       /* Prestige Gold */
+            --gold: #d4af37;       /* Prestige Gold (Fixed color) */
             --text-light: #ccd6f6; /* White-ish text */
             --text-dim: #8892b0;   /* Grey text */
             --white: #ffffff;
@@ -36,7 +37,7 @@
         .background-fixed {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            /* Space Image overlaid with Navy Blue to match the theme */
+            /* Space Image overlaid with Navy Blue */
             background: linear-gradient(rgba(10, 25, 47, 0.9), rgba(10, 25, 47, 0.95)), url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1920&auto=format&fit=crop');
             background-size: cover;
             background-position: center;
@@ -78,7 +79,7 @@
             animation: fadeUp 1s ease-out forwards;
         }
 
-        /* --- NAVIGATION (Style from Code 1) --- */
+        /* --- NAVIGATION --- */
         nav {
             display: flex;
             justify-content: space-between;
@@ -98,6 +99,7 @@
             gap: 15px;
         }
 
+        /* LOGO STYLING */
         .logo-img {
             height: 45px; width: 45px;
             border-radius: 50%;
@@ -124,7 +126,7 @@
         }
         .menu-btn:hover { background: rgba(100, 255, 218, 0.1); }
 
-        /* --- SIDEBAR (From Code 1) --- */
+        /* --- SIDEBAR --- */
         .sidebar {
             position: fixed;
             top: 0; right: -300px;
@@ -163,13 +165,13 @@
             background: rgba(100, 255, 218, 0.05);
         }
 
-        /* --- HERO SECTION (Style from Code 2 - Left Aligned) --- */
+        /* --- HERO SECTION --- */
         .hero {
-            height: 90vh;
+            min-height: 90vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            align-items: flex-start; /* Left aligned */
+            align-items: flex-start;
             padding: 0 10%;
             position: relative;
         }
@@ -242,7 +244,7 @@
             max-width: 300px;
         }
 
-        /* --- MAGAZINE BOX (Featured at Top) --- */
+        /* --- MAGAZINE BOX --- */
         .magazine-box {
             background: linear-gradient(135deg, #112240 0%, #1d3f72 100%);
             padding: 50px;
@@ -251,7 +253,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 60px; /* Space between Magazine and Grid */
+            margin-bottom: 60px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
             transition: transform 0.3s ease;
         }
@@ -274,7 +276,7 @@
             text-transform: uppercase;
         }
 
-        /* --- GRID (Code 2 Style) --- */
+        /* --- GRID --- */
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -313,7 +315,7 @@
             font-size: 0.95rem;
         }
 
-        /* --- FOOTER (Style from Code 1) --- */
+        /* --- FOOTER --- */
         footer {
             border-top: 1px solid rgba(255,255,255,0.05);
             background: #020c1b;
@@ -347,6 +349,8 @@
             .hero h1 { font-size: 3rem; }
             .magazine-box { flex-direction: column; text-align: center; gap: 30px; }
             .hero { align-items: center; text-align: center; }
+            .section-header { justify-content: center; }
+            .line { display: none; }
         }
     </style>
 </head>
@@ -363,7 +367,7 @@
 
     <nav class="animate-load">
         <div class="logo-area">
-            <img src="https://cdn-icons-png.flaticon.com/512/3067/3067346.png" alt="RGC Logo" class="logo-img">
+            <img src="logo.jpg" alt="RGC Logo" class="logo-img">
             <div class="brand-name">RGC <span>Science</span> Club</div>
         </div>
 
@@ -381,7 +385,7 @@
         <a href="#magazine" onclick="toggleMenu()">Magazine</a>
         <a href="#contact" onclick="toggleMenu()">Contact</a>
         <div style="text-align: center; margin-top: 50px;">
-            <a href="#" style="border: 1px solid var(--accent); display: inline-block; padding: 10px 20px; border-radius: 5px; color: var(--accent); text-decoration: none;">Join Club</a>
+            <a href="https://forms.gle/DWcCDkg2RuEHMtG46" style="border: 1px solid var(--accent); display: inline-block; padding: 10px 20px; border-radius: 5px; color: var(--accent); text-decoration: none;">Join Club</a>
         </div>
     </div>
 
@@ -420,10 +424,10 @@
             <div class="elite-card">
                 <div class="card-icon"><i class="fa-solid fa-chalkboard-user"></i></div>
                 <h3>Scientific Research</h3>
-                <p>Collaborative projects on Physics, Biology, and AI.From rocketry to biology simulations, we turn theoretical knowledge into practical reality.</p>
+                <p>Collaborative projects on Physics, Biology, and AI. From rocketry to biology simulations, we turn theoretical knowledge into practical reality.</p>
             </div>
 
-                       <div class="elite-card">
+            <div class="elite-card">
                 <div class="card-icon"><i class="fa-solid fa-code"></i></div>
                 <h3>Workshops</h3>
                 <p>Hands-on training in Programming, Robotics, and research for future innovators.</p>
@@ -445,7 +449,7 @@
             <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
             <a href="#"><i class="fa-brands fa-youtube"></i></a>
             <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
-            <a href="#"><i class="fa-solid fa-envelope"></i></a>
+            <a href="mailto:mdahsanhabibonup@gmail.com"><i class="fa-solid fa-envelope"></i></a>
         </div>
 
         <div class="copyright">
