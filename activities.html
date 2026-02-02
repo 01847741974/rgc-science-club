@@ -42,6 +42,38 @@
         .brand-name { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; color: var(--text-light); }
         .brand-name span { color: var(--accent); }
 
+        /* --- MENU BUTTON & SIDEBAR --- */
+        .menu-btn {
+            font-size: 1.5rem; color: var(--accent); cursor: pointer;
+            border: 1px solid rgba(100, 255, 218, 0.3); padding: 8px 12px;
+            border-radius: 5px; transition: 0.3s;
+        }
+        .menu-btn:hover { background: rgba(100, 255, 218, 0.1); }
+
+        .sidebar {
+            position: fixed; top: 0; right: -300px; width: 280px; height: 100%;
+            background: #112240; box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+            transition: 0.4s ease; z-index: 2000; padding-top: 80px;
+            border-left: 2px solid var(--gold);
+        }
+        .sidebar.active { right: 0; }
+
+        .close-btn {
+            position: absolute; top: 25px; right: 25px;
+            font-size: 1.5rem; color: var(--accent); cursor: pointer;
+        }
+
+        .sidebar a {
+            display: block; padding: 15px 30px; font-size: 1rem;
+            color: var(--text-light); text-decoration: none;
+            font-family: 'Inter', sans-serif; border-bottom: 1px solid rgba(255,255,255,0.05);
+            transition: 0.3s;
+        }
+        .sidebar a:hover {
+            color: var(--accent); padding-left: 40px;
+            background: rgba(100, 255, 218, 0.05);
+        }
+
         /* --- PAGE HEADER --- */
         .page-header {
             text-align: center; padding: 100px 20px 60px;
@@ -51,27 +83,23 @@
         }
         .page-title { 
             font-family: 'Playfair Display', serif; 
-            font-size: 3.5rem; 
-            color: var(--white); 
-            margin-bottom: 15px; 
-            letter-spacing: 1px;
+            font-size: 3.5rem; color: var(--white); 
+            margin-bottom: 15px; letter-spacing: 1px;
         }
         .page-subtitle { color: var(--accent); font-family: 'Courier New', monospace; letter-spacing: 2px; }
 
         .container { max-width: 1000px; margin: 0 auto; padding: 50px 20px; }
 
-        /* --- SUMMARY SECTION (IMAGE REMOVED) --- */
+        /* --- SUMMARY SECTION --- */
         .summary-section {
             display: flex; flex-direction: column; align-items: center;
             text-align: center; margin-bottom: 80px; 
         }
-        /* Image style removed */
 
         /* --- MAGAZINE HIGHLIGHT --- */
         .magazine-highlight {
             background: linear-gradient(135deg, #112240 0%, #0a192f 100%);
-            padding: 60px; border-radius: 10px; 
-            border: 1px solid var(--gold);
+            padding: 60px; border-radius: 10px; border: 1px solid var(--gold);
             margin-bottom: 60px; text-align: center;
             position: relative; overflow: hidden;
         }
@@ -79,29 +107,21 @@
             content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 5px; background: var(--gold);
         }
         .magazine-highlight h2 { 
-            font-family: 'Playfair Display', serif; 
-            color: var(--white); 
-            font-size: 2.8rem; 
-            margin-bottom: 20px; 
+            font-family: 'Playfair Display', serif; color: var(--white); 
+            font-size: 2.8rem; margin-bottom: 20px; 
         }
 
         /* --- CONTENT CARDS --- */
         .content-card { 
-            background: var(--secondary); 
-            padding: 50px; 
-            border-radius: 8px; 
-            margin-bottom: 40px; 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            border-left: 4px solid var(--accent);
-            transition: transform 0.3s ease;
+            background: var(--secondary); padding: 50px; border-radius: 8px; 
+            margin-bottom: 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            border-left: 4px solid var(--accent); transition: transform 0.3s ease;
         }
         .content-card:hover { transform: translateY(-5px); }
         
         .content-card h3 { 
-            color: var(--white); 
-            margin-bottom: 20px; 
-            font-family: 'Playfair Display', serif; 
-            font-size: 2rem; 
+            color: var(--white); margin-bottom: 20px; 
+            font-family: 'Playfair Display', serif; font-size: 2rem; 
             display: flex; align-items: center; gap: 15px;
         }
         .content-card h3 i { color: var(--accent); font-size: 1.5rem; }
@@ -119,10 +139,8 @@
 
         /* --- FOOTER --- */
         footer { 
-            border-top: 1px solid rgba(255,255,255,0.05); 
-            background: #020c1b; 
-            padding: 60px 20px; 
-            text-align: center; margin-top: 50px; 
+            border-top: 1px solid rgba(255,255,255,0.05); background: #020c1b; 
+            padding: 60px 20px; text-align: center; margin-top: 50px; 
         }
         .social-icons a { 
             color: var(--text-dim); margin: 0 15px; font-size: 1.5rem; transition: 0.3s; 
@@ -143,7 +161,21 @@
             <img src="logo.jpg" alt="RGC Logo" class="logo-img">
             <div class="brand-name">RGC <span>Science</span> Club</div>
         </a>
+
+        <div class="menu-btn" onclick="toggleMenu()">
+            <i class="fa-solid fa-bars"></i>
+        </div>
     </nav>
+
+    <div class="sidebar" id="sidebarMenu">
+        <div class="close-btn" onclick="toggleMenu()">
+            <i class="fa-solid fa-times"></i>
+        </div>
+        <a href="index.html">Home</a>
+        <a href="activities.html">Activities</a>
+        <a href="#magazine">Magazine</a>
+        <a href="https://forms.gle/DWcCDkg2RuEHMtG46">Join Club</a>
+    </div>
 
     <div class="page-header">
         <h1 class="page-title">Our Activities</h1>
@@ -158,7 +190,7 @@
             </p>
         </div>
 
-        <div class="magazine-highlight">
+        <div class="magazine-highlight" id="magazine">
             <div style="margin-bottom: 20px;">
                 <i class="fa-solid fa-book-open" style="font-size: 3rem; color: var(--gold);"></i>
             </div>
@@ -221,6 +253,13 @@
         </p>
     </footer>
 
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('sidebarMenu');
+            menu.classList.toggle('active');
+        }
+    </script>
+
 </body>
-    </html>
+                </html>
     
