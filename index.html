@@ -197,15 +197,16 @@
 
         /* --- HERO SECTION --- */
                /* HERO SECTION FIX */
-        .hero {
-            min-height: 100vh;       /* পুরো স্ক্রিন জুড়ে থাকবে */
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start; /* লেখা মাঝখানের বদলে উপর থেকে শুরু হবে */
-            align-items: flex-start;     /* বাম পাশ থেকে শুরু হবে */
-            padding: 140px 10% 0;        /* মেনুর নিচে যাতে লেখাটা দেখা যায়, তাই উপরে গ্যাপ দেওয়া হলো */
-            }
-            
+                .hero { 
+            min-height: auto;            /* হাইট কমিয়ে দিয়েছি, যাতে নিচের গ্যাপ কমে যায় */
+            display: flex; 
+            flex-direction: column; 
+            justify-content: flex-start; 
+            align-items: flex-start;     
+            text-align: left;            
+            padding: 150px 5% 50px;      /* বামে ১০% এর বদলে ৫% দিয়েছি, যাতে কর্নারে থাকে */
+                }
+        
         }
 
         .pre-title {
