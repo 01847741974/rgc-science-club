@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Activities | RGC Science Club</title>
     <meta name="description" content="Explore the research, workshops, and publications of Rangpur Govt. College Science Club.">
-        <meta property="og:title" content="RGC Science Club | Center for Excellence">
+    <meta property="og:title" content="RGC Science Club | Center for Excellence">
     <meta property="og:description" content="রংপুর সরকারি কলেজ সায়েন্স ক্লাবের অফিসিয়াল ওয়েবসাইট। বিজ্ঞান চর্চা ও উদ্ভাবনে আমরাই সেরা।">
     <meta property="og:image" content="https://rgcsc.pages.dev/banner.jpg">
     <meta property="og:url" content="https://rgcsc.pages.dev/">
@@ -58,10 +58,15 @@
         .menu-btn:hover { background: rgba(100, 255, 218, 0.1); }
 
         .sidebar {
-            position: fixed; top: 0; right: -300px; width: 280px; height: 100%;
-            background: #112240; box-shadow: -10px 0 30px rgba(0,0,0,0.5);
-            transition: 0.4s ease; z-index: 2000; padding-top: 80px;
+            position: fixed; top: 0; right: -320px;
+            width: 260px; max-width: 70vw; height: fit-content;
+            padding-bottom: 35px; border-bottom-left-radius: 20px;
+            background: rgba(10, 25, 47, 0.98); backdrop-filter: blur(15px);
+            box-shadow: -10px 10px 30px rgba(0,0,0,0.6);
+            transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 2000; padding-top: 80px;
             border-left: 2px solid var(--gold);
+            border-bottom: 2px solid var(--gold);
         }
         .sidebar.active { right: 0; }
 
@@ -71,13 +76,13 @@
         }
 
         .sidebar a {
-            display: block; padding: 15px 30px; font-size: 1rem;
+            display: block; padding: 12px 25px; font-size: 1rem;
             color: var(--text-light); text-decoration: none;
             font-family: 'Inter', sans-serif; border-bottom: 1px solid rgba(255,255,255,0.05);
             transition: 0.3s;
         }
         .sidebar a:hover {
-            color: var(--accent); padding-left: 40px;
+            color: var(--accent); padding-left: 35px;
             background: rgba(100, 255, 218, 0.05);
         }
 
@@ -154,10 +159,68 @@
         }
         .social-icons a:hover { color: var(--accent); }
 
-        @media (max-width: 768px) {
+        /* =========================================================
+           RESPONSIVE DESIGN (PC, Tablet, Mobile)
+           ========================================================= */
+
+        /* --- 1. DESKTOP & LARGE SCREENS --- */
+        @media (min-width: 1025px) {
+            .logo-img { height: 65px; width: 65px; } 
+            .brand-name { font-size: 2.2rem; } 
+        }
+
+        /* --- 2. TABLET PORTRAIT --- */
+        @media (min-width: 610px) and (max-width: 1024px) {
+            .logo-img { height: 55px; width: 55px; }
+            .brand-name { font-size: 1.8rem; }
+            .page-title { font-size: 3.2rem; }
+            .magazine-highlight { padding: 40px; }
+            .content-card { padding: 40px; }
+        }
+
+        /* --- 3. TABLET LANDSCAPE --- */
+        @media (min-width: 768px) and (max-width: 1366px) and (orientation: landscape) {
+            .logo-img { height: 55px; width: 55px; }
+            .brand-name { font-size: 1.8rem; }
+            .page-header { padding-top: 100px; padding-bottom: 40px; }
+            .page-title { font-size: 3rem; }
+        }
+
+        /* --- 4. PHONE PORTRAIT --- */
+        @media (max-width: 609px) {
+            nav { padding: 15px 5%; }
+            .brand-name { font-size: 1.6rem; } 
+            .logo-img { height: 50px; width: 50px; } 
+            
+            .page-header { padding: 80px 20px 40px; }
             .page-title { font-size: 2.5rem; }
-            .magazine-highlight { padding: 30px; }
-            .content-card { padding: 30px; }
+            .page-subtitle { font-size: 0.9rem; }
+            
+            .magazine-highlight { padding: 35px 20px; }
+            .magazine-highlight h2 { font-size: 2rem; }
+            
+            .content-card { padding: 30px 20px; }
+            .content-card h3 { font-size: 1.6rem; flex-direction: column; align-items: flex-start; gap: 10px; }
+
+            /* Mobile Sidebar Adjustment */
+            .sidebar { width: 180px; }
+            .close-btn { right: 15px; }
+            .sidebar a { padding: 12px 15px; font-size: 0.95rem; }
+            .sidebar a:hover { padding-left: 20px; }
+            .sidebar div[style*="text-align: center"] { padding: 0 15px !important; }
+        }
+
+        /* --- 5. PHONE LANDSCAPE --- */
+        @media (max-width: 932px) and (orientation: landscape) {
+            nav { padding: 5px 5%; }
+            .brand-name { font-size: 1.4rem; } 
+            .logo-img { height: 40px; width: 40px; }
+            
+            .page-header { padding: 60px 20px 30px; }
+            .page-title { font-size: 2.2rem; }
+            
+            .magazine-highlight, .content-card { padding: 25px; }
+            .content-card h3 { font-size: 1.5rem; }
         }
     </style>
 </head>
@@ -182,6 +245,7 @@
         <a href="activities.html">Activities</a>
         <a href="#executives">Executives</a> <a href="#magazine">Magazine</a>
         <a href="#contact">Contact</a>
+      <a href="#contact">About</a>
         <div style="text-align: center; margin-top: 50px;">
             <a href="https://forms.gle/DWcCDkg2RuEHMtG46" style="border: 1px solid var(--accent); display: inline-block; padding: 10px 20px; border-radius: 5px; color: var(--accent); text-decoration: none;">Join Club</a>
         </div>
@@ -206,7 +270,7 @@
             </div>
             <h2>"PARADOX" Science Magazine</h2>
             <p style="font-size: 1.1rem; line-height: 1.8;">
-                Our flagship publication, <strong>"PARADOX"</strong>, is the heartbeat of our intellectual community. It is more than just a magazine; it is a platform for student voices. Published Quarterly, it features peer-reviewed research articles, science fiction stories, mind-bending mathematical puzzles, and updates on the latest global scientific breakthroughs.
+                Our flagship publication, <strong>"PARADOX"</strong>, is the heartbeat of our intellectual community. It is more than just a magazine; it is a platform for student voices. Published monthly, it features peer-reviewed research articles, science fiction stories, mind-bending mathematical puzzles, and updates on the latest global scientific breakthroughs.
             </p>
             <p>
                 Written, edited, and designed entirely by our members, PARADOX represents the creative and analytical potential of Rangpur Govt. College students.
@@ -271,5 +335,5 @@
     </script>
 
 </body>
-                </html>
+    </html>
     
