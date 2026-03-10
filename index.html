@@ -35,7 +35,7 @@
       "@context": "https://schema.org",
       "@type": "WebSite",
       "name": "RGC Science Club",
-      "alternateName": ["RGCSC", "RGC Science Club"],
+      "alternateName": ["RGCSC", "RGC Science Club","রংপুর সরকারি কলেজ বিজ্ঞান ক্লাব", "বিজ্ঞান ক্লাব", "science club"],
       "url": "https://rgcsc.pages.dev/"
     }
     </script>
@@ -119,19 +119,19 @@
         .sidebar {
             position: fixed;
             top: 0; right: -320px;
-            width: 260px; /* ডিফল্ট প্রস্থ কমানো হয়েছে */
-            max-width: 70vw; /* মোবাইলে স্ক্রিনের ৭০% এর বেশি জায়গা নেবে না */
-            height: fit-content; /* উচ্চতা শুধু মেনু অপশন অনুযায়ী হবে */
-            padding-bottom: 35px; /* নিচে এক্সট্রা অপশনের জন্য কিছুটা জায়গা */
-            border-bottom-left-radius: 20px; /* স্মার্ট ফ্লোটিং লুকের জন্য কোণ বাঁকা করা হয়েছে */
+            width: 260px;
+            max-width: 70vw; 
+            height: fit-content; 
+            padding-bottom: 35px; 
+            border-bottom-left-radius: 20px;
             background: rgba(10, 25, 47, 0.98);
             backdrop-filter: blur(15px);
-            box-shadow: -10px 10px 30px rgba(0,0,0,0.6); /* নিচ বরাবর শ্যাডো দেওয়া হয়েছে */
+            box-shadow: -10px 10px 30px rgba(0,0,0,0.6);
             transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             z-index: 2000;
             padding-top: 80px;
             border-left: 2px solid var(--gold);
-            border-bottom: 2px solid var(--gold); /* নিচেও গোল্ডেন বর্ডার দেওয়া হলো */
+            border-bottom: 2px solid var(--gold); 
         }
         .sidebar.active { right: 0; }
         .close-btn { position: absolute; top: 25px; right: 25px; font-size: 1.5rem; color: var(--accent); cursor: pointer; }
@@ -145,11 +145,11 @@
         .hero {
             display: flex;
             flex-direction: column;
-            justify-content: flex-start; /* Content starts from top */
-            align-items: flex-start;     /* Content aligns to the left */
-            text-align: left;            /* Text aligns to the left */
-            padding: 120px 5% 50px 5%;   /* Added top padding to push content down from nav */
-            min-height: auto;            /* Removed 90vh dependency */
+            justify-content: flex-start;
+            align-items: flex-start;     
+            text-align: left;            
+            padding: 120px 5% 50px 5%;  
+            min-height: auto;            
             position: relative;
         }
         .pre-title { color: var(--accent); font-family: 'Courier New', monospace; margin-bottom: 20px; letter-spacing: 2px; }
@@ -220,14 +220,12 @@
         .social-icons a { color: var(--text-dim); font-size: 1.3rem; margin: 0 15px; transition: 0.3s; }
         .social-icons a:hover { color: var(--accent); }
 
-/* =========================================================
-   RESPONSIVE DESIGN 
-   ========================================================= */
+
 
 /* --- 1. DESKTOP & LARGE SCREENS (min-width: 1025px) --- */
 @media (min-width: 1025px) {
-    .logo-img { height: 65px; width: 65px; } /* পিসির জন্য লোগো বড় করা হলো */
-    .brand-name { font-size: 2.2rem; } /* পিসির জন্য নাম বড় করা হলো */
+    .logo-img { height: 65px; width: 65px; } 
+    .brand-name { font-size: 2.2rem; } 
     .hero { padding-top: 150px; }
     .hero h1 { font-size: 4.5rem; }
     .hero p { font-size: 1.2rem; max-width: 600px; }
@@ -275,7 +273,6 @@
     .grid { grid-template-columns: 1fr; }
     .elite-card { padding: 25px 20px; }
 
-    /* সাইডবার শুধু মোবাইলে ছোট (প্রায় ৪০%) হবে */
     .sidebar { width: 180px; }
     .close-btn { right: 15px; }
     .sidebar a { padding: 12px 15px; font-size: 0.95rem; }
