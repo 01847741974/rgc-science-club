@@ -587,10 +587,13 @@ footer { background: #020308; padding: 50px 5% 20px 5%; border-top: 1px solid rg
             <h3>Stay Updated</h3>
             <p>Subscribe to get notified about upcoming events, seminars, and new PARADOX releases.</p>
             
-            <form action="https://formspree.io/f/xvzwbnpq" method="POST" class="newsletter-form">
-                <input type="email" name="email" placeholder="Enter your email address" required>
-                <button type="submit" class="btn-main">Subscribe Now</button>
-            </form>
+                <form id="subscribe-form" action="https://formspree.io/f/xvzwbnpq" method="POST" class="newsletter-form">
+        <input type="email" name="email" placeholder="Enter your email address" required>
+        <button type="submit" class="btn-main">Subscribe Now</button>
+    <</form>
+    
+    <<p id="form-status" style="display: none; margin-top: 15px; font-weight: bold; font-size: 1.1rem;"></p>
+            
         </div>
     </section>
         
