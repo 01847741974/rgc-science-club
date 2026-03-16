@@ -335,7 +335,36 @@ footer { background: #020308; padding: 50px 5% 20px 5%; border-top: 1px solid rg
             .footer-socials-new a i { font-size: 1.5rem; }
             .footer-socials-new a span { font-size: 0.7rem; }
        }
-                            
+                /* --- JOIN CLUB MODAL (POP-UP) --- */
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(5,8,16,0.95); backdrop-filter: blur(8px); z-index: 9999; justify-content: center; align-items: center; padding: 20px; }
+        .modal-content { background: var(--secondary); padding: 40px; border-radius: 15px; width: 100%; max-width: 600px; max-height: 90vh; overflow-y: auto; position: relative; border: 1px solid var(--accent); box-shadow: 0 0 30px rgba(0,229,255,0.2); }
+        
+        /* Custom Scrollbar for Modal */
+        .modal-content::-webkit-scrollbar { width: 6px; }
+        .modal-content::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 10px; }
+        
+        .close-modal { position: absolute; top: 15px; right: 20px; font-size: 2rem; color: #fff; cursor: pointer; transition: 0.3s; line-height: 1; }
+        .close-modal:hover { color: var(--accent); transform: scale(1.1); }
+        .modal-content h2 { color: #fff; margin-bottom: 5px; font-size: 1.8rem; font-family: 'Montserrat', sans-serif;}
+        .modal-content p { color: var(--text-dim); margin-bottom: 25px; font-size: 0.9rem; }
+        
+        .form-group { margin-bottom: 15px; }
+        .form-group.row { display: flex; gap: 15px; }
+        .form-group input, .form-group select { width: 100%; padding: 12px 15px; border-radius: 6px; border: 1px solid rgba(0,229,255,0.3); background: rgba(0,0,0,0.5); color: #fff; font-size: 0.95rem; outline: none; transition: 0.3s; }
+        .form-group input:focus, .form-group select:focus { border-color: var(--accent); box-shadow: 0 0 10px rgba(0,229,255,0.2); }
+        .form-group select option { background: var(--secondary); color: #fff; }
+        
+        .form-checkbox { display: flex; align-items: flex-start; gap: 12px; margin-top: 20px; margin-bottom: 20px; }
+        .form-checkbox input { margin-top: 3px; accent-color: var(--accent); width: 18px; height: 18px; cursor: pointer; flex-shrink: 0;}
+        .form-checkbox label { color: var(--text-light); font-size: 0.85rem; line-height: 1.5; cursor: pointer; text-align: left;}
+
+        /* Mobile Fix */
+        @media (max-width: 600px) {
+            .form-group.row { flex-direction: column; gap: 15px; }
+            .modal-content { padding: 30px 20px; }
+            .modal-content h2 { font-size: 1.5rem; }
+                        }
+                              
     </style>
     </head>
 <body>
@@ -374,7 +403,8 @@ footer { background: #020308; padding: 50px 5% 20px 5%; border-top: 1px solid rg
                 <h1>Where Curiosity <br> Meets <span>Innovation</span></h1>
                 <p>Join the elite community of young scientists. We conduct independent research, organize nationwide events, and shape the future of technology.</p>
                 <div class="hero-buttons">
-                    <a href="joinclub.html" class="btn-main">Join Club</a> 
+                    <a href="#" id="join-btn" class="btn-outline">Join Club</a>
+                    
                     <a href="#become" class="btn-outline">Become a Writer</a>
                 </div>
             </div>
@@ -402,6 +432,13 @@ footer { background: #020308; padding: 50px 5% 20px 5%; border-top: 1px solid rg
             <span class="dot" onclick="goToSlide(1)"></span>
         </div>
     </section>
+                <div class="about-content">
+                <h3 style="color: #fff; margin-bottom: 15px; font-size: 1.8rem; font-family: 'Montserrat', sans-serif;">Our Journey & Purpose</h3>
+                
+                <p class="lead-text" style="font-size: 1.1rem; line-height: 1.7; color: var(--text-dim);">
+                    Established in 2023 through a series of events and challenges, RGC Science Club has reached its current position. We hold weekly meetings guided by our Chief Advisor, Dr. Md. Babul Hossain (Head of Zoology), and Co-Advisor, Md. Matiur Rahman (Associate Professor of Physics). Our main goal is to remove the fear of rigorous academics and create a genuine love for science. By working on practical projects, programming, robotics, and participating in Olympiads, our members develop essential skills in group work, connectivity, cooperation, and leadership.
+                </p>
+                </div>
     
         <section class="section-container" id="activities">
         <div class="section-header" data-aos="fade-up">
@@ -569,14 +606,14 @@ footer { background: #020308; padding: 50px 5% 20px 5%; border-top: 1px solid rg
             <div class="committee-track" id="sliderTrack">
                 <div class="team-card"><img src="shipon.jpg" alt="Shipon" onerror="this.src='error_face_male.jpg'"><h3>Shipon</h3><p>President</p></div>
                 <div class="team-card"><img src="aysha.jpg" alt="Aysha" onerror="this.src='error_face_female.jpg'"><h3>Aysha</h3><p>Vice President</p></div>
-                <div class="team-card" style="border-color: var(--accent);"><img src="ahsan.jpg" alt="Ahsan" onerror="this.src='error_face_male.jpg'"><h3>Ahsan Habib</h3><p>General Secretary</p></div>
+                <div class="team-card" style="border-color: var(--accent);"><img src="habib.jpg" alt="Ahsan" onerror="this.src='error_face_male.jpg'"><h3>Ahsan Habib</h3><p>General Secretary</p></div>
                 <div class="team-card"><img src="plabon.jpg" alt="Plabon" onerror="this.src='error_face_male.jpg'"><h3>Plabon</h3><p>Associate General Sec.</p></div>
                 <div class="team-card"><img src="ratin.jpg" alt="Ratin" onerror="this.src='error_face_male.jpg'"><h3>Ratin</h3><p>Organizing Secretary</p></div>
-                <div class="team-card"><img src="sajeeb.jpg" alt="Sajeeb" onerror="this.src='error_face_male.jpg'"><h3>Sajeeb</h3><p>Media Secretary</p></p></div>
+                <div class="team-card"><img src="sajeeb.jpg" alt="Sajeeb" onerror="this.src='error_face_male.jpg'"><h3>Sajeeb</h3><p>Publicity Secretary</p></p></div>
                 <div class="team-card"><img src="afia.jpg" alt="Treasurer" onerror="this.src='error_face_female.jpg'"><h3>Afia</h3><p>Treasurer</p></div>
                 <div class="team-card"><img src="munira.jpg" alt="Munira"onerror="this.src='error_face_female.jpg'"><h3>Munira Sadia</h3><p>Executive Member</p></div>
                 <div class="team-card"><img src="hridoy.jpg" alt="Hridoy" onerror="this.src='error_face_male.jpg'"><h3>Hridoy</h3><p>Executive Member</p></div>
-                <div class="team-card"><img src="mansib.jpg" alt="Mansib"onerror="this.src='error_face_female.jpg'"><h3>Munira Sadia</><h3>Mansib</h3><p>Executive Member</p></div>
+                <div class="team-card"><img src="mansib.jpg" alt="Mansib"onerror="this.src='error_face_female.jpg'"><h3>Mansib</h3><p>Executive Member</p></div>
                 <div class="team-card"><img src="#" alt="Member" onerror="this.src='default_face.jpg'"><h3>None Yet!</h3><p>Executive Member</p></div>
                 <div class="team-card"><img src="#" alt="Member" onerror="this.src='default_face.jpg'"><h3>None Yet!</h3><p>Executive Member</p></div>
             </div>
@@ -590,13 +627,77 @@ footer { background: #020308; padding: 50px 5% 20px 5%; border-top: 1px solid rg
                 <form id="subscribe-form" action="https://formspree.io/f/xvzwbnpq" method="POST" class="newsletter-form">
         <input type="email" name="email" placeholder="Enter your email address" required>
         <button type="submit" class="btn-main">Subscribe Now</button>
-    <</form>
+    </form>
     
-    <<p id="form-status" style="display: none; margin-top: 15px; font-weight: bold; font-size: 1.1rem;"></p>
+    <p id="form-status" style="display: none; margin-top: 15px; font-weight: bold; font-size: 1.1rem;"></p>
             
         </div>
     </section>
-        
+            <div id="joinModal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-modal" id="closeJoinModal">&times;</span>
+            <h2>Membership Form</h2>
+            <p>Become a part of the elite community of young scientists.</p>
+            
+            <form id="membership-form" action=https://formspree.io/f/xjgaayry" method="POST">
+                <div class="form-group row">
+                    <input type="text" name="Full_Name" placeholder="Full Name *" required>
+                    <input type="text" name="Nickname" placeholder="Nickname">
+                </div>
+                <div class="form-group row">
+                    <input type="text" name="Date_of_Birth" placeholder="Date of Birth (DD/MM/YYYY) *" required>
+                    <select name="Blood_Group" required>
+                        <option value="" disabled selected>Blood Group *</option>
+                        <option value="A+">A+</option>
+                        <option value="A-">A-</option>
+                        <option value="B+">B+</option>
+                        <option value="B-">B-</option>
+                        <option value="O+">O+</option>
+                        <option value="O-">O-</option>
+                        <option value="AB+">AB+</option>
+                        <option value="AB-">AB-</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                     <select name="Gender" required>
+                        <option value="" disabled selected>Gender *</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                    </select>
+                </div>
+
+                <div class="form-group row">
+                    <select name="Class" required>
+                        <option value="" disabled selected>Class *</option>
+                        <option value="11">Class 11</option>
+                        <option value="12">Class 12</option>
+                    </select>
+                    <input type="text" name="Session" placeholder="Session (e.g., 2025-26) *" required>
+                </div>
+                <div class="form-group row">
+                    <input type="text" name="Section" placeholder="Section *" required>
+                    <input type="text" name="Roll" placeholder="Roll Number *" required>
+                </div>
+
+                <div class="form-group row">
+                    <input type="tel" name="Contact_Number" placeholder="Contact Number *" required>
+                    <input type="email" name="Email" placeholder="Email Address *" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" name="Present_Address" placeholder="Present Address *" required>
+                </div>
+
+                <div class="form-checkbox">
+                    <input type="checkbox" id="declaration" name="Declaration" required>
+                    <label for="declaration">I promise to actively participate in all Science Club activities, respect every member, and uphold a positive, inclusive, and disciplined environment. I will always represent the Science Club with integrity and dedication.</label>
+                </div>
+                
+                <button type="submit" class="btn-main" style="width: 100%; margin-top: 10px;">Submit Application</button>
+                <p id="join-form-status" style="display: none; text-align: center; margin-top: 15px; font-weight: bold;"></p>
+            </form>
+        </div>
+            </div>
+    
     
 
         <footer>
@@ -619,7 +720,8 @@ footer { background: #020308; padding: 50px 5% 20px 5%; border-top: 1px solid rg
                 </div>
                 
                 <div class="footer-buttons">
-                    <a href="joinclub.html" class="btn-outline btn-large">Join Club</a>
+                    <a href="#" id="join-btn" class="btn-outline">Join Club</a>
+                    
                     <a href="#" class="btn-outline btn-large">Become a Writer</a>
                 </div>
                 
@@ -778,6 +880,67 @@ footer { background: #020308; padding: 50px 5% 20px 5%; border-top: 1px solid rg
             });
         });
                                                     </script>
+        <script>
+        var joinModal = document.getElementById("joinModal");
+        var joinBtn = document.getElementById("join-btn");
+        var closeJoinModal = document.getElementById("closeJoinModal");
+
+        // Open the modal when "Join Club" is clicked
+        if(joinBtn) {
+            joinBtn.onclick = function(e) {
+                e.preventDefault();
+                joinModal.style.display = "flex";
+            }
+        }
+
+        // Close the modal when the "X" is clicked
+        closeJoinModal.onclick = function() {
+            joinModal.style.display = "none";
+        }
+
+        // Close the modal if clicked outside of it
+        window.onclick = function(event) {
+            if (event.target == joinModal) {
+                joinModal.style.display = "none";
+            }
+        }
+
+        // Form Submit Logic (AJAX without redirect)
+        var joinForm = document.getElementById("membership-form");
+        var joinStatus = document.getElementById("join-form-status");
+
+        joinForm.addEventListener("submit", function(event) {
+            event.preventDefault();
+            var data = new FormData(event.target);
+            
+            fetch(event.target.action, {
+                method: joinForm.method,
+                body: data,
+                headers: { 'Accept': 'application/json' }
+            }).then(response => {
+                if (response.ok) {
+                    joinStatus.innerHTML = "Application Submitted Successfully!";
+                    joinStatus.style.color = "var(--accent)";
+                    joinStatus.style.display = "block";
+                    joinForm.reset();
+                    // Close the form automatically after 3 seconds
+                    setTimeout(function(){ 
+                        joinModal.style.display = "none"; 
+                        joinStatus.style.display = "none"; 
+                    }, 3000);
+                } else {
+                    joinStatus.innerHTML = "Oops! Something went wrong.";
+                    joinStatus.style.color = "#ff4d4d";
+                    joinStatus.style.display = "block";
+                }
+            }).catch(error => {
+                joinStatus.innerHTML = "Oops! Something went wrong.";
+                joinStatus.style.color = "#ff4d4d";
+                joinStatus.style.display = "block";
+            });
+        });
+        </script>
+    
     
 </body>
 </html>
