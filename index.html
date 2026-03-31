@@ -453,13 +453,35 @@ footer { background: #020308; padding: 50px 5% 20px 5%; border-top: 1px solid rg
                     <p>March Issue</p>
                     <a href="https://docs.google.com/uc?export=download&id=1IErRYG-8BdYWfmKrxclIjQluB92HID5j" class="btn-main"><i class="fa-solid fa-download"></i> Download PDF</a>
                 </div>
-                <div class="split-img">
-                    <div class="book-wrapper">
-                        <img src="pc_march.jpg" alt="Magazine Cover">
-                        <a href="https://heyzine.com/flip-book/08028c16ee.html" class="btn-rokomari" target="_blank" rel="noopener noreferrer">Read Now</a>
-                        
-                    </div>
-                </div>
+               <div class="split-img">
+    <div class="book-wrapper" style="text-align: center;">
+        
+        <div id="coverSection">
+            <img src="pc_march.jpg" alt="Magazine Cover" style="width: 100%; max-width: 300px; margin-bottom: 15px;">
+            <br>
+            <button onclick="showFlipbook()" class="btn-rokomari" style="cursor: pointer; border: none; padding: 10px 20px;">Read Now</button>
+        </div>
+
+        <div id="flipbookSection" style="display: none;">
+            <iframe allowfullscreen="allowfullscreen" allow="clipboard-write" scrolling="no" class="fp-iframe" src="https://heyzine.com/flip-book/08028c16ee.html" style="border:1px solid lightgray; width: 100%; height: 400px;"></iframe>
+            <br>
+            <button onclick="hideFlipbook()" style="margin-top: 15px; cursor: pointer; background: #dc3545; color: white; padding: 8px 16px; border: none; border-radius: 4px;">Close Flipbook</button>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    function showFlipbook() {
+        document.getElementById("coverSection").style.display = "none";
+        document.getElementById("flipbookSection").style.display = "block";
+    }
+    function hideFlipbook() {
+        document.getElementById("flipbookSection").style.display = "none";
+        document.getElementById("coverSection").style.display = "block";
+    }
+</script>
+                
             </div>
         </div>
         
@@ -500,8 +522,28 @@ footer { background: #020308; padding: 50px 5% 20px 5%; border-top: 1px solid rg
                 </ul>
                 
                 <div class="magazine-buttons">
-                    <a href="#" target="_blank" class="btn-main">Read Now (PDF)</a>
-                </div>
+    <a href="javascript:void(0);" id="showPdfBtn" class="btn-main" onclick="togglePdfIframe()">Read Now (PDF)</a>
+</div>
+
+<div id="pdfContainer" style="display: none; margin-top: 20px; width: 100%; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+    <iframe src="https://drive.google.com/file/d/1IErRYG-8BdYWfmKrxclIjQluB92HID5j/preview" width="100%" height="600" frameborder="0" allowfullscreen></iframe>
+</div>
+
+<script>
+    function togglePdfIframe() {
+        var container = document.getElementById("pdfContainer");
+        var btn = document.getElementById("showPdfBtn");
+        
+        if (container.style.display === "none" || container.style.display === "") {
+            container.style.display = "block";
+            btn.innerHTML = "✖ Close PDF"; // খোলার পর বাটনের লেখা পরিবর্তন হবে
+        } else {
+            container.style.display = "none";
+            btn.innerHTML = "Read Now (PDF)"; // বন্ধ করার পর আবার আগের লেখা ফিরে আসবে
+        }
+    }
+</script>
+                
                 
                 <hr class="magazine-divider">
                 
