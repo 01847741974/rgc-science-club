@@ -453,34 +453,15 @@ footer { background: #020308; padding: 50px 5% 20px 5%; border-top: 1px solid rg
                     <p>March Issue</p>
                     <a href="https://docs.google.com/uc?export=download&id=1IErRYG-8BdYWfmKrxclIjQluB92HID5j" class="btn-main"><i class="fa-solid fa-download"></i> Download PDF</a>
                 </div>
-               <div class="split-img">
+                 <div class="split-img">
     <div class="book-wrapper" style="text-align: center;">
-        
-        <div id="coverSection">
-            <img src="pc_march.jpg" alt="Magazine Cover" style="width: 100%; max-width: 300px; margin-bottom: 15px;">
-            <br>
-            <button onclick="showFlipbook()" class="btn-rokomari" style="cursor: pointer; border: none; padding: 10px 20px;">Read Now</button>
-        </div>
-
-        <div id="flipbookSection" style="display: none;">
-            <iframe allowfullscreen="allowfullscreen" allow="clipboard-write" scrolling="no" class="fp-iframe" src="https://heyzine.com/flip-book/08028c16ee.html" style="border:1px solid lightgray; width: 100%; height: 400px;"></iframe>
-            <br>
-            <button onclick="hideFlipbook()" style="margin-top: 15px; cursor: pointer; background: #dc3545; color: white; padding: 8px 16px; border: none; border-radius: 4px;">Close Flipbook</button>
-        </div>
-
+        <img src="pc_march.jpg" alt="Magazine Cover" style="width: 100%; max-width: 300px; margin-bottom: 15px;">
+        <br>
+        <button onclick="openFullscreenFlipbook()" class="btn-rokomari" style="cursor: pointer; border: none; padding: 10px 20px; font-size: 16px; background-color: #007bff; color: white; border-radius: 5px;">
+            Read Now
+        </button>
     </div>
-</div>
-
-<script>
-    function showFlipbook() {
-        document.getElementById("coverSection").style.display = "none";
-        document.getElementById("flipbookSection").style.display = "block";
-    }
-    function hideFlipbook() {
-        document.getElementById("flipbookSection").style.display = "none";
-        document.getElementById("coverSection").style.display = "block";
-    }
-</script>
+    </div>
                 
             </div>
         </div>
@@ -520,30 +501,40 @@ footer { background: #020308; padding: 50px 5% 20px 5%; border-top: 1px solid rg
                     <li><span>✔</span> A mysterious fact about our Earth</li>
                     <li><span>✔</span> Some Olympiad standard problem s</li>
                 </ul>
-                
                 <div class="magazine-buttons">
-    <a href="javascript:void(0);" id="showPdfBtn" class="btn-main" onclick="togglePdfIframe()">Read Now (PDF)</a>
+    <a href="javascript:void(0);" class="btn-main" onclick="openPdfViewer()">Read Now (PDF)</a>
 </div>
 
-<div id="pdfContainer" style="display: none; margin-top: 20px; width: 100%; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
-    <iframe src="https://drive.google.com/file/d/1IErRYG-8BdYWfmKrxclIjQluB92HID5j/preview" width="100%" height="600" frameborder="0" allowfullscreen></iframe>
+<div id="pdfContainer" style="display: none; margin-top: 20px; width: 100%; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.1); border: 1px solid #ddd;">
+    
+    <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 15px; background: #f8f9fa; border-bottom: 1px solid #ddd;">
+        
+        <a href="https://docs.google.com/uc?export=download&id=1IErRYG-8BdYWfmKrxclIjQluB92HID5j" target="_blank" style="background: #28a745; color: white; padding: 6px 14px; text-decoration: none; border-radius: 4px; font-weight: bold; font-size: 14px; display: inline-flex; align-items: center; gap: 5px;">
+            📥 Download
+        </a>
+        
+        <span onclick="closePdfViewer()" style="cursor: pointer; font-size: 24px; font-weight: bold; color: #dc3545; line-height: 1; padding: 0 5px;" title="Close PDF">
+            &times;
+        </span>
+        
+    </div>
+
+    <iframe src="https://drive.google.com/file/d/1IErRYG-8BdYWfmKrxclIjQluB92HID5j/preview" width="100%" height="600" frameborder="0" allowfullscreen style="display: block;"></iframe>
 </div>
 
 <script>
-    function togglePdfIframe() {
-        var container = document.getElementById("pdfContainer");
-        var btn = document.getElementById("showPdfBtn");
-        
-        if (container.style.display === "none" || container.style.display === "") {
-            container.style.display = "block";
-            btn.innerHTML = "✖ Close PDF"; // খোলার পর বাটনের লেখা পরিবর্তন হবে
-        } else {
-            container.style.display = "none";
-            btn.innerHTML = "Read Now (PDF)"; // বন্ধ করার পর আবার আগের লেখা ফিরে আসবে
-        }
+    function openPdfViewer() {
+        // বাটনে ক্লিক করলে পিডিএফ কন্টেইনার ওপেন হবে
+        document.getElementById("pdfContainer").style.display = "block";
+    }
+    
+    function closePdfViewer() {
+        // ক্রস আইকনে ক্লিক করলে পিডিএফ কন্টেইনার বন্ধ হয়ে যাবে
+        document.getElementById("pdfContainer").style.display = "none";
     }
 </script>
                 
+          
                 
                 <hr class="magazine-divider">
                 
@@ -1079,5 +1070,33 @@ footer { background: #020308; padding: 50px 5% 20px 5%; border-top: 1px solid rg
             });
         });
             </script>
+    <div id="fullscreenFlipbook" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: rgba(0,0,0,0.9); z-index: 999999; flex-direction: column;">
+    
+    <div style="width: 100%; padding: 15px 25px; display: flex; justify-content: flex-end; box-sizing: border-box;">
+        <span onclick="closeFullscreenFlipbook()" style="cursor: pointer; font-size: 35px; font-weight: bold; color: #ff4d4d; line-height: 1;" title="Close Flipbook">
+            &times;
+        </span>
+    </div>
+    
+    <div style="flex-grow: 1; width: 100%; display: flex; justify-content: center; align-items: center; padding-bottom: 20px;">
+        <iframe allowfullscreen="allowfullscreen" allow="clipboard-write" scrolling="no" src="https://heyzine.com/flip-book/08028c16ee.html" style="border: none; width: 90%; height: 95%; background: white; border-radius: 8px; box-shadow: 0 5px 25px rgba(0,0,0,0.5);"></iframe>
+    </div>
+
+</div>
+
+<script>
+    function openFullscreenFlipbook() {
+        var flipbook = document.getElementById("fullscreenFlipbook");
+        flipbook.style.display = "flex"; // পপ-আপ ওপেন করবে
+        document.body.style.overflow = "hidden"; // পেজের ব্যাকগ্রাউন্ড স্ক্রল বন্ধ করবে
+    }
+
+    function closeFullscreenFlipbook() {
+        var flipbook = document.getElementById("fullscreenFlipbook");
+        flipbook.style.display = "none"; // পপ-আপ বন্ধ করবে
+        document.body.style.overflow = "auto"; // পেজের স্ক্রল আবার চালু করবে
+    }
+</script>
+    
 </body>
 </html>
