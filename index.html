@@ -735,7 +735,8 @@ footer { background: #020308; padding: 50px 5% 20px 5%; border-top: 1px solid rg
         <div class="newsletter-box">
             <h3>Stay Updated</h3>
             <p>Subscribe to get notified about upcoming events, seminars, and new PARADOX releases.</p>
-<form id="subscribe-form" action="https://script.google.com/macros/s/AKfycbx9NNG5PLNsEpUNyVQ5tC5dbiFOX_z783t6-KOZjw6p8jPJOr9ome_ybl3vsLYSG7l-/exec" method="POST" class="newsletter-form">
+<form id="subscribe-form" action="https://formspree.io/f/xvzwbnpq" method="POST" class="newsletter-form">
+    
     
     
                 
@@ -754,7 +755,8 @@ footer { background: #020308; padding: 50px 5% 20px 5%; border-top: 1px solid rg
             <span class="close-modal" id="closeJoinModal">&times;</span>
             <h2>Membership Form</h2>
             <p>Become a part of the elite community of young scientists.</p>
-            <form id="membership-form" action= "https://Ahsan47.pythonanywhere.com/member-form" method="POST">
+            <form id="membership-form" action="https://formspree.io/f/xjgaayry" method="POST">
+                
                 
                
                 <div class="form-group row">
@@ -969,83 +971,92 @@ footer { background: #020308; padding: 50px 5% 20px 5%; border-top: 1px solid rg
         initParticles(); 
         animateParticles();
     </script>
-    <script>
-    var form = document.getElementById("subscribe-form");
-    var statusMessage = document.getElementById("form-status");
+     
+        <script>
+        var subForm = document.getElementById("subscribe-form");
+        var subStatus = document.getElementById("form-status");
 
-    form.addEventListener("submit", function(event) {
-        event.preventDefault(); // ডিফল্ট রিডাইরেক্ট হওয়া বন্ধ করবে
-        
-        var submitBtn = form.querySelector("button[type='submit']");
-        var originalBtnText = submitBtn.innerHTML;
-        submitBtn.innerHTML = "Submitting..."; // সাবমিট করার সময় লোডিং দেখাবে
-        
-        var data = new FormData(form);
-        
-        // গুগলের সার্ভারে ডেটা পাঠানোর জাদুকরী কোড
-        fetch(event.target.action, {
-            method: 'POST',
-            mode: 'no-cors', // <--- এটাই সেই জাদুকরী সমাধান (CORS Error বন্ধ করবে)!
-            body: data
-        }).then(() => {
-            // ডেটা পাঠানো সফল হলে
-            statusMessage.innerHTML = "Thanks for subscribing!";
-            statusMessage.style.display = "block";
-            statusMessage.style.color = "var(--accent)"; 
-            form.reset(); 
-        }).catch(error => {
-            // নেটওয়ার্ক প্রবলেম হলে
-            statusMessage.innerHTML = "Error: Please check your internet connection.";
-            statusMessage.style.display = "block";
-            statusMessage.style.color = "#ff4d4d";
-        }).finally(() => {
-            submitBtn.innerHTML = originalBtnText; // কাজ শেষে বাটন আগের মতো হবে
+        subForm.addEventListener("submit", function(event) {
+            event.preventDefault();
+            var data = new FormData(event.target);
+            var submitBtn = subForm.querySelector("button[type='submit']");
+            var originalBtnText = submitBtn.innerHTML;
+            submitBtn.innerHTML = "Submitting...";
+
+            // ম্যাজিক ১: PythonAnywhere-এ ডেটা পাঠানো (গুগল শিটের জন্য)
+            fetch("https://Ahsan47.pythonanywhere.com/subscription-form", {
+                method: 'POST',
+                body: data,
+                mode: 'no-cors' // কোনো সিকিউরিটি এরর দেবে না
+            });
+
+            // ম্যাজিক ২: Formspree-তে ডেটা পাঠানো (ইমেইলের জন্য)
+            fetch(event.target.action, {
+                method: 'POST',
+                body: data,
+                headers: { 'Accept': 'application/json' }
+            }).then(response => {
+                if (response.ok) {
+                    subStatus.innerHTML = "Thanks for subscribing!";
+                    subStatus.style.display = "block";
+                    subStatus.style.color = "var(--accent)";
+                    subForm.reset();
+                } else {
+                    subStatus.innerHTML = "Oops! There was a problem.";
+                    subStatus.style.display = "block";
+                    subStatus.style.color = "#ff4d4d";
+                }
+            }).catch(error => {
+                subStatus.innerHTML = "Connection Error.";
+                subStatus.style.display = "block";
+                subStatus.style.color = "#ff4d4d";
+            }).finally(() => {
+                submitBtn.innerHTML = originalBtnText;
+            });
         });
-    });
     </script>
-    
+
+    <script>
         var joinModal = document.getElementById("joinModal");
         var joinBtn = document.getElementById("join-btn");
-        var joinBtnFooter = document.getElementById("join-btn-footer"); // ফুটারের বাটনের জন্য
+        var joinBtnFooter = document.getElementById("join-btn-footer");
         var closeJoinModal = document.getElementById("closeJoinModal");
 
-        // পপ-আপ ওপেন করার ফাংশন
         function openModal(e) {
             e.preventDefault();
             joinModal.style.display = "flex";
         }
-
-        // দুই বাটনেই ফাংশনটি যুক্ত করা হলো
         if(joinBtn) joinBtn.onclick = openModal;
         if(joinBtnFooter) joinBtnFooter.onclick = openModal;
 
-        closeJoinModal.onclick = function() {
-            joinModal.style.display = "none";
-        }
-        window.onclick = function(event) {
-            if (event.target == joinModal) joinModal.style.display = "none";
-        }
+        closeJoinModal.onclick = function() { joinModal.style.display = "none"; }
+        window.onclick = function(event) { if (event.target == joinModal) joinModal.style.display = "none"; }
 
-        // Form Submit Logic
         var joinForm = document.getElementById("membership-form");
         var joinStatus = document.getElementById("join-form-status");
-        var submitBtn = joinForm.querySelector("button[type='submit']");
+        var joinSubmitBtn = joinForm.querySelector("button[type='submit']");
 
         joinForm.addEventListener("submit", function(event) {
             event.preventDefault();
-            
-            // সাবমিট করার সময় বাটনের কালার ও টেক্সট পরিবর্তন (Black & White)
-            var originalBtnText = submitBtn.innerHTML;
-            submitBtn.disabled = true;
-            submitBtn.style.background = "#333333"; // ডার্ক গ্রে/ব্ল্যাক
-            submitBtn.style.color = "#aaaaaa";
-            submitBtn.style.cursor = "not-allowed";
-            submitBtn.innerHTML = "Submitting...";
+            var originalBtnText = joinSubmitBtn.innerHTML;
+            joinSubmitBtn.disabled = true;
+            joinSubmitBtn.style.background = "#333333";
+            joinSubmitBtn.style.color = "#aaaaaa";
+            joinSubmitBtn.style.cursor = "not-allowed";
+            joinSubmitBtn.innerHTML = "Submitting...";
             
             var data = new FormData(event.target);
             
+            // ম্যাজিক ১: PythonAnywhere-এ ডেটা পাঠানো (গুগল শিটের জন্য)
+            fetch("https://Ahsan47.pythonanywhere.com/member-form", {
+                method: 'POST',
+                body: data,
+                mode: 'no-cors'
+            });
+
+            // ম্যাজিক ২: Formspree-তে ডেটা পাঠানো (ইমেইলের জন্য)
             fetch(event.target.action, {
-                method: joinForm.method,
+                method: 'POST',
                 body: data,
                 headers: { 'Accept': 'application/json' }
             }).then(response => {
@@ -1059,29 +1070,25 @@ footer { background: #020308; padding: 50px 5% 20px 5%; border-top: 1px solid rg
                         joinStatus.style.display = "none"; 
                     }, 3000);
                 } else {
-                    response.json().then(data => {
-                        if (Object.hasOwn(data, 'errors')) {
-                            joinStatus.innerHTML = data["errors"].map(error => error["message"]).join(", ");
-                        } else {
-                            joinStatus.innerHTML = "Oops! Something went wrong.";
-                        }
-                        joinStatus.style.color = "#ff4d4d";
-                        joinStatus.style.display = "block";
-                    });
+                    joinStatus.innerHTML = "Oops! Something went wrong.";
+                    joinStatus.style.color = "#ff4d4d";
+                    joinStatus.style.display = "block";
                 }
             }).catch(error => {
                 joinStatus.innerHTML = "Connection Error. Please try again.";
                 joinStatus.style.color = "#ff4d4d";
                 joinStatus.style.display = "block";
             }).finally(() => {
-                // কাজ শেষে বাটন আবার আগের মতো করে দেওয়া
-                submitBtn.disabled = false;
-                submitBtn.style.background = ""; 
-                submitBtn.style.color = "";
-                submitBtn.style.cursor = "pointer";
-                submitBtn.innerHTML = originalBtnText;
+                joinSubmitBtn.disabled = false;
+                joinSubmitBtn.style.background = ""; 
+                joinSubmitBtn.style.color = "";
+                joinSubmitBtn.style.cursor = "pointer";
+                joinSubmitBtn.innerHTML = originalBtnText;
             });
         });
+    </script>
+   
+   
             </script>
     <div id="fullscreenFlipbook" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: rgba(0,0,0,0.9); z-index: 999999; flex-direction: column;">
     
