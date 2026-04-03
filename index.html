@@ -976,33 +976,26 @@ footer { background: #020308; padding: 50px 5% 20px 5%; border-top: 1px solid rg
     form.addEventListener("submit", function(event) {
         event.preventDefault(); // ডিফল্ট রিডাইরেক্ট হওয়া বন্ধ করবে
         
-        var data = new FormData(event.target);
-        var urlEncodedData = new URLSearchParams(data); // গুগল শিটের জন্য ডেটা রেডি করা
-        
-        // সাবমিট করার সময় লোডিং দেখানোর জন্য
         var submitBtn = form.querySelector("button[type='submit']");
         var originalBtnText = submitBtn.innerHTML;
-        submitBtn.innerHTML = "Submitting...";
+        submitBtn.innerHTML = "Submitting..."; // সাবমিট করার সময় লোডিং দেখাবে
         
+        var data = new FormData(form);
+        
+        // গুগলের সার্ভারে ডেটা পাঠানোর জাদুকরী কোড
         fetch(event.target.action, {
             method: 'POST',
-            body: urlEncodedData,
-            headers: {
-                // গুগল এই ফরম্যাটটাই শুধু সাপোর্ট করে
-                'Content-Type': 'application/x-www-form-urlencoded' 
-            }
-        }).then(response => response.json())
-        .then(result => {
-            if (result.result === "success") {
-                statusMessage.innerHTML = "Thanks for subscribing!";
-                statusMessage.style.display = "block";
-                statusMessage.style.color = "var(--accent)"; 
-                form.reset(); 
-            } else {
-                throw new Error("Server Error");
-            }
+            mode: 'no-cors', // <--- এটাই সেই জাদুকরী সমাধান (CORS Error বন্ধ করবে)!
+            body: data
+        }).then(() => {
+            // ডেটা পাঠানো সফল হলে
+            statusMessage.innerHTML = "Thanks for subscribing!";
+            statusMessage.style.display = "block";
+            statusMessage.style.color = "var(--accent)"; 
+            form.reset(); 
         }).catch(error => {
-            statusMessage.innerHTML = "Oops! There was a problem.";
+            // নেটওয়ার্ক প্রবলেম হলে
+            statusMessage.innerHTML = "Error: Please check your internet connection.";
             statusMessage.style.display = "block";
             statusMessage.style.color = "#ff4d4d";
         }).finally(() => {
@@ -1011,7 +1004,6 @@ footer { background: #020308; padding: 50px 5% 20px 5%; border-top: 1px solid rg
     });
     </script>
     
-            <script>
         var joinModal = document.getElementById("joinModal");
         var joinBtn = document.getElementById("join-btn");
         var joinBtnFooter = document.getElementById("join-btn-footer"); // ফুটারের বাটনের জন্য
