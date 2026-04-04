@@ -983,21 +983,29 @@ footer { background: #020308; padding: 50px 5% 20px 5%; border-top: 1px solid rg
             var originalBtnText = submitBtn.innerHTML;
             submitBtn.innerHTML = "Submitting...";
 
-            // শুধুমাত্র PythonAnywhere-এ ডেটা পাঠানো হচ্ছে (Sheet + Auto Email)
+            // no-cors বাদ দেওয়া হয়েছে
             fetch("https://ahsan47.pythonanywhere.com/subscription-form", {
                 method: 'POST',
-                body: data,
-                mode: 'no-cors' 
-            }).then(() => {
-                subStatus.innerHTML = "Thanks for subscribing!";
+                body: data
+            })
+            .then(response => response.json()) // সার্ভারের আসল মেসেজ পড়া হচ্ছে
+            .then(result => {
+                if(result.status === "success") {
+                    subStatus.innerHTML = "Thanks for subscribing!";
+                    subStatus.style.color = "var(--accent)";
+                    subForm.reset();
+                } else {
+                    subStatus.innerHTML = "Server Error. Please try again.";
+                    subStatus.style.color = "#ff4d4d";
+                }
                 subStatus.style.display = "block";
-                subStatus.style.color = "var(--accent)";
-                subForm.reset();
-            }).catch(error => {
+            })
+            .catch(error => {
                 subStatus.innerHTML = "Connection Error.";
-                subStatus.style.display = "block";
                 subStatus.style.color = "#ff4d4d";
-            }).finally(() => {
+                subStatus.style.display = "block";
+            })
+            .finally(() => {
                 submitBtn.innerHTML = originalBtnText;
             });
         });
@@ -1030,25 +1038,33 @@ footer { background: #020308; padding: 50px 5% 20px 5%; border-top: 1px solid rg
             
             var data = new FormData(event.target);
             
-            // শুধুমাত্র PythonAnywhere-এ ডেটা পাঠানো হচ্ছে (Sheet + Auto Email)
+            // no-cors বাদ দেওয়া হয়েছে
             fetch("https://ahsan47.pythonanywhere.com/member-form", {
                 method: 'POST',
-                body: data,
-                mode: 'no-cors'
-            }).then(() => {
-                joinStatus.innerHTML = "Application Submitted Successfully!";
-                joinStatus.style.color = "var(--accent)";
+                body: data
+            })
+            .then(response => response.json())
+            .then(result => {
+                if(result.status === "success") {
+                    joinStatus.innerHTML = "Application Submitted Successfully!";
+                    joinStatus.style.color = "var(--accent)";
+                    joinForm.reset();
+                    setTimeout(function(){ 
+                        joinModal.style.display = "none"; 
+                        joinStatus.style.display = "none"; 
+                    }, 3000);
+                } else {
+                    joinStatus.innerHTML = "Server Error. Could not save data.";
+                    joinStatus.style.color = "#ff4d4d";
+                }
                 joinStatus.style.display = "block";
-                joinForm.reset();
-                setTimeout(function(){ 
-                    joinModal.style.display = "none"; 
-                    joinStatus.style.display = "none"; 
-                }, 3000);
-            }).catch(error => {
+            })
+            .catch(error => {
                 joinStatus.innerHTML = "Connection Error. Please try again.";
                 joinStatus.style.color = "#ff4d4d";
                 joinStatus.style.display = "block";
-            }).finally(() => {
+            })
+            .finally(() => {
                 joinSubmitBtn.disabled = false;
                 joinSubmitBtn.style.background = ""; 
                 joinSubmitBtn.style.color = "";
@@ -1058,7 +1074,6 @@ footer { background: #020308; padding: 50px 5% 20px 5%; border-top: 1px solid rg
         });
     </script>
     
-   
    
             </script>
     <div id="fullscreenFlipbook" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: rgba(0,0,0,0.9); z-index: 999999; flex-direction: column;">
