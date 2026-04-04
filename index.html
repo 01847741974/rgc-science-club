@@ -972,7 +972,7 @@ footer { background: #020308; padding: 50px 5% 20px 5%; border-top: 1px solid rg
         animateParticles();
     </script>
      
-        <script>
+          <script>
         var subForm = document.getElementById("subscribe-form");
         var subStatus = document.getElementById("form-status");
 
@@ -983,29 +983,16 @@ footer { background: #020308; padding: 50px 5% 20px 5%; border-top: 1px solid rg
             var originalBtnText = submitBtn.innerHTML;
             submitBtn.innerHTML = "Submitting...";
 
-            // ম্যাজিক ১: PythonAnywhere-এ ডেটা পাঠানো (গুগল শিটের জন্য)
-            fetch("https://Ahsan47.pythonanywhere.com/subscription-form", {
+            // শুধুমাত্র PythonAnywhere-এ ডেটা পাঠানো হচ্ছে (Sheet + Auto Email)
+            fetch("https://ahsan47.pythonanywhere.com/subscription-form", {
                 method: 'POST',
                 body: data,
-                mode: 'no-cors' // কোনো সিকিউরিটি এরর দেবে না
-            });
-
-            // ম্যাজিক ২: Formspree-তে ডেটা পাঠানো (ইমেইলের জন্য)
-            fetch(event.target.action, {
-                method: 'POST',
-                body: data,
-                headers: { 'Accept': 'application/json' }
-            }).then(response => {
-                if (response.ok) {
-                    subStatus.innerHTML = "Thanks for subscribing!";
-                    subStatus.style.display = "block";
-                    subStatus.style.color = "var(--accent)";
-                    subForm.reset();
-                } else {
-                    subStatus.innerHTML = "Oops! There was a problem.";
-                    subStatus.style.display = "block";
-                    subStatus.style.color = "#ff4d4d";
-                }
+                mode: 'no-cors' 
+            }).then(() => {
+                subStatus.innerHTML = "Thanks for subscribing!";
+                subStatus.style.display = "block";
+                subStatus.style.color = "var(--accent)";
+                subForm.reset();
             }).catch(error => {
                 subStatus.innerHTML = "Connection Error.";
                 subStatus.style.display = "block";
@@ -1022,13 +1009,9 @@ footer { background: #020308; padding: 50px 5% 20px 5%; border-top: 1px solid rg
         var joinBtnFooter = document.getElementById("join-btn-footer");
         var closeJoinModal = document.getElementById("closeJoinModal");
 
-        function openModal(e) {
-            e.preventDefault();
-            joinModal.style.display = "flex";
-        }
+        function openModal(e) { e.preventDefault(); joinModal.style.display = "flex"; }
         if(joinBtn) joinBtn.onclick = openModal;
         if(joinBtnFooter) joinBtnFooter.onclick = openModal;
-
         closeJoinModal.onclick = function() { joinModal.style.display = "none"; }
         window.onclick = function(event) { if (event.target == joinModal) joinModal.style.display = "none"; }
 
@@ -1047,33 +1030,20 @@ footer { background: #020308; padding: 50px 5% 20px 5%; border-top: 1px solid rg
             
             var data = new FormData(event.target);
             
-            // ম্যাজিক ১: PythonAnywhere-এ ডেটা পাঠানো (গুগল শিটের জন্য)
-            fetch("https://Ahsan47.pythonanywhere.com/member-form", {
+            // শুধুমাত্র PythonAnywhere-এ ডেটা পাঠানো হচ্ছে (Sheet + Auto Email)
+            fetch("https://ahsan47.pythonanywhere.com/member-form", {
                 method: 'POST',
                 body: data,
                 mode: 'no-cors'
-            });
-
-            // ম্যাজিক ২: Formspree-তে ডেটা পাঠানো (ইমেইলের জন্য)
-            fetch(event.target.action, {
-                method: 'POST',
-                body: data,
-                headers: { 'Accept': 'application/json' }
-            }).then(response => {
-                if (response.ok) {
-                    joinStatus.innerHTML = "Application Submitted Successfully!";
-                    joinStatus.style.color = "var(--accent)";
-                    joinStatus.style.display = "block";
-                    joinForm.reset();
-                    setTimeout(function(){ 
-                        joinModal.style.display = "none"; 
-                        joinStatus.style.display = "none"; 
-                    }, 3000);
-                } else {
-                    joinStatus.innerHTML = "Oops! Something went wrong.";
-                    joinStatus.style.color = "#ff4d4d";
-                    joinStatus.style.display = "block";
-                }
+            }).then(() => {
+                joinStatus.innerHTML = "Application Submitted Successfully!";
+                joinStatus.style.color = "var(--accent)";
+                joinStatus.style.display = "block";
+                joinForm.reset();
+                setTimeout(function(){ 
+                    joinModal.style.display = "none"; 
+                    joinStatus.style.display = "none"; 
+                }, 3000);
             }).catch(error => {
                 joinStatus.innerHTML = "Connection Error. Please try again.";
                 joinStatus.style.color = "#ff4d4d";
@@ -1087,6 +1057,7 @@ footer { background: #020308; padding: 50px 5% 20px 5%; border-top: 1px solid rg
             });
         });
     </script>
+    
    
    
             </script>
