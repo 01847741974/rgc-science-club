@@ -7,9 +7,10 @@
     <meta name="description" content="Official Science Magazine of RGC Science Club - Question Everything.">
     
     <link rel="icon" type="image/jpeg" href="logo.jpg">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800;900&family=Inter:wght@300;400;500;600&family=Hind+Siliguri:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" type="image/jpeg" href="logo.jpg">
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800;900&family=Inter:wght@300;400;500;600;700&family=Hind+Siliguri:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <style>
         :root {
@@ -22,101 +23,295 @@
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
-        body { font-family: 'Inter', 'Hind Siliguri', sans-serif; background: var(--primary); color: var(--text-light); overflow-x: hidden; line-height: 1.6; }
+        body { 
+            font-family: 'Inter', 'Hind Siliguri', sans-serif; 
+            background: var(--primary); 
+            color: var(--text-light); 
+            overflow-x: hidden; 
+            line-height: 1.6; 
+        }
 
-        #canvas-container { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; z-index: -1; pointer-events: none; }
+        /* --- BACKGROUND PARTICLES --- */
+        #canvas-container { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; z-index: 0; pointer-events: none; }
 
-        /* --- HEADER & NAVBAR --- */
-        header.nav-header { position: fixed; top: 0; width: 100%; z-index: 1000; background: rgba(5, 8, 16, 0.85); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(0, 229, 255, 0.1); }
-        .notice-bar { background: linear-gradient(90deg, #0ea5e9, #00E5FF); color: #000; padding: 5px 0; font-size: 0.85rem; font-weight: 700; display: flex; align-items: center; }
-        .notice-bar span { background: #000; color: #fff; padding: 2px 20px; z-index: 2; position: relative; font-family: 'Montserrat', sans-serif; font-size: 0.8rem;}
+        /* --- HEADER & NAVIGATION --- */
+        header.nav-header { position: sticky; top: 0; width: 100%; z-index: 1000; background: rgba(5, 8, 16, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(0, 229, 255, 0.15); }
+        .notice-bar { background: linear-gradient(90deg, #0ea5e9, #00E5FF); color: #000; padding: 6px 0; font-size: 0.85rem; font-weight: 700; display: flex; align-items: center; }
+        .notice-bar span { background: #000; color: #fff; padding: 2px 15px; z-index: 2; position: relative; font-family: 'Montserrat', sans-serif; font-size: 0.75rem;}
 
-        nav { display: flex; justify-content: space-between; align-items: center; padding: 10px 5%; }
-        .brand-name { font-family: 'Montserrat', sans-serif; font-size: 1.5rem; font-weight: 800; text-decoration: none; color: #fff; }
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 12px 5%; }
+        .brand-name { font-family: 'Montserrat', sans-serif; font-size: 1.4rem; font-weight: 800; text-decoration: none; color: #fff; }
         .brand-name span { color: var(--accent); }
 
         .nav-links { display: flex; gap: 20px; list-style: none; }
         .nav-links a { color: var(--text-light); text-decoration: none; font-size: 0.95rem; font-weight: 500; transition: 0.3s; }
         .nav-links a:hover, .nav-links a.active { color: var(--accent); }
-        .hamburger { display: none; font-size: 1.8rem; color: var(--accent); cursor: pointer; }
+        .hamburger { display: none; font-size: 1.6rem; color: var(--accent); cursor: pointer; }
 
-        /* --- MAGAZINE HERO --- */
-        .mag-hero { padding-top: 140px; padding-bottom: 40px; text-align: center; position: relative; z-index: 2; }
-        .mag-hero h1 { font-family: 'Montserrat', sans-serif; font-size: clamp(2.2rem, 5vw, 3.8rem); font-weight: 900; margin-bottom: 10px; }
-        .mag-hero h1 span { color: var(--accent); text-shadow: 0 0 20px rgba(0,229,255,0.4); }
-        .mag-hero p { color: var(--text-dim); font-size: 1.1rem; max-width: 600px; margin: 0 auto 20px auto; }
-        .mag-tagline { display: inline-block; background: rgba(0,229,255,0.1); border: 1px solid rgba(0,229,255,0.3); padding: 5px 18px; border-radius: 30px; color: var(--accent); font-size: 0.85rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; }
+        /* --- MAGAZINE HERO HEADER --- */
+        .mag-hero { 
+            position: relative; 
+            z-index: 1; 
+            padding: 50px 5% 30px 5%; 
+            text-align: center; 
+        }
+        .mag-hero-badge { 
+            display: inline-block; 
+            background: rgba(0, 229, 255, 0.1); 
+            color: var(--accent); 
+            border: 1px solid rgba(0, 229, 255, 0.3); 
+            padding: 4px 16px; 
+            border-radius: 30px; 
+            font-size: 0.8rem; 
+            font-weight: 700; 
+            letter-spacing: 2px; 
+            text-transform: uppercase; 
+            margin-bottom: 12px;
+        }
+        .mag-hero h1 { 
+            font-family: 'Montserrat', sans-serif; 
+            font-size: clamp(2rem, 4vw, 3.2rem); 
+            font-weight: 900; 
+            margin-bottom: 10px; 
+            line-height: 1.2;
+        }
+        .mag-hero h1 span { color: var(--accent); }
+        .mag-hero p { 
+            color: var(--text-dim); 
+            font-size: 1rem; 
+            max-width: 650px; 
+            margin: 0 auto; 
+        }
 
-        /* --- MAGAZINE CONTAINER & CARDS --- */
-        .magazine-section { max-width: 1200px; margin: 0 auto; padding: 40px 5% 80px 5%; position: relative; z-index: 2; display: flex; flex-direction: column; gap: 60px; }
-        
-        .issue-card { display: flex; align-items: center; gap: 50px; background: rgba(10, 17, 34, 0.75); padding: 45px; border-radius: 20px; border: 1px solid rgba(0, 229, 255, 0.15); backdrop-filter: blur(8px); transition: 0.4s; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-        .issue-card:hover { border-color: var(--accent); transform: translateY(-5px); box-shadow: 0 15px 40px rgba(0,229,255,0.15); }
-        .issue-card.reverse { flex-direction: row-reverse; }
+        /* --- MAGAZINE SECTION & CARDS --- */
+        .magazine-section { 
+            max-width: 1150px; 
+            margin: 0 auto; 
+            padding: 20px 5% 80px 5%; 
+            position: relative; 
+            z-index: 1; 
+            display: flex; 
+            flex-direction: column; 
+            gap: 50px; 
+        }
 
-        .issue-cover-wrapper { flex: 1; min-width: 280px; max-width: 340px; position: relative; text-align: center; }
-        .issue-cover { width: 100%; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 15px 35px rgba(0,0,0,0.8); transition: 0.4s; }
-        .issue-cover-wrapper:hover .issue-cover { transform: scale(1.03); }
-        .cover-glow { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 85%; height: 85%; background: var(--accent); filter: blur(65px); opacity: 0.2; z-index: -1; }
+        .issue-card { 
+            display: flex; 
+            align-items: center; 
+            gap: 40px; 
+            background: rgba(10, 17, 34, 0.85); 
+            border: 1px solid rgba(0, 229, 255, 0.15); 
+            border-radius: 20px; 
+            padding: 40px; 
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6); 
+            backdrop-filter: blur(8px);
+            transition: 0.3s ease;
+        }
+        .issue-card:hover {
+            border-color: var(--accent);
+            box-shadow: 0 15px 40px rgba(0, 229, 255, 0.15);
+        }
 
-        .issue-content { flex: 1.5; }
-        .issue-badge { display: inline-block; background: rgba(0,229,255,0.15); color: var(--accent); padding: 4px 14px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; margin-bottom: 15px; border: 1px solid rgba(0,229,255,0.3); text-transform: uppercase; }
-        .issue-content h2 { font-family: 'Montserrat', sans-serif; font-size: clamp(1.6rem, 3vw, 2.3rem); color: #fff; margin-bottom: 12px; }
-        .issue-desc { color: var(--text-dim); font-size: 0.95rem; margin-bottom: 20px; line-height: 1.7; }
+        /* Left Book Cover */
+        .issue-cover-box { 
+            flex: 1; 
+            min-width: 260px; 
+            max-width: 320px; 
+            text-align: center; 
+            position: relative; 
+        }
+        .issue-cover-box img { 
+            width: 100%; 
+            max-width: 280px; 
+            border-radius: 10px; 
+            border: 1px solid rgba(255,255,255,0.15); 
+            box-shadow: 0 15px 30px rgba(0,0,0,0.8); 
+            display: block; 
+            margin: 0 auto;
+        }
 
-        .article-highlights { list-style: none; margin-bottom: 30px; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px 20px; }
-        .article-highlights li { font-size: 0.9rem; color: #e2e8f0; display: flex; align-items: center; gap: 8px; }
-        .article-highlights li i { color: var(--accent); font-size: 0.85rem; }
+        /* Right Content Area */
+        .issue-details { flex: 1.5; }
+        .issue-pill { 
+            display: inline-block; 
+            background: rgba(0, 229, 255, 0.1); 
+            color: var(--accent); 
+            padding: 4px 12px; 
+            border-radius: 15px; 
+            font-size: 0.8rem; 
+            font-weight: 700; 
+            margin-bottom: 12px; 
+            border: 1px solid rgba(0, 229, 255, 0.25);
+        }
+        .issue-details h2 { 
+            font-family: 'Montserrat', sans-serif; 
+            font-size: clamp(1.5rem, 2.5vw, 2.1rem); 
+            color: #fff; 
+            margin-bottom: 12px; 
+        }
+        .issue-summary { 
+            color: var(--text-dim); 
+            font-size: 0.95rem; 
+            margin-bottom: 20px; 
+            line-height: 1.6; 
+        }
+
+        /* Article List Items */
+        .article-checklist { 
+            list-style: none; 
+            padding: 0; 
+            margin-bottom: 25px; 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); 
+            gap: 10px 15px; 
+        }
+        .article-checklist li { 
+            font-size: 0.9rem; 
+            color: var(--text-light); 
+            display: flex; 
+            align-items: center; 
+            gap: 8px; 
+        }
+        .article-checklist li i { color: var(--accent); font-size: 0.85rem; }
 
         /* BUTTONS */
-        .btn-group { display: flex; gap: 15px; flex-wrap: wrap; }
-        .btn-main, .btn-outline { padding: 12px 24px; border-radius: 6px; text-decoration: none; font-weight: 600; font-family: 'Montserrat', sans-serif; font-size: 0.9rem; transition: 0.3s; display: inline-flex; align-items: center; gap: 8px; cursor: pointer; border: none; }
-        .btn-main { background: var(--accent); color: #000; }
-        .btn-main:hover { background: #06b6d4; transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0, 229, 255, 0.3); }
-        .btn-outline { border: 1px solid var(--accent); color: var(--text-light); background: rgba(0,0,0,0.4); }
-        .btn-outline:hover { background: rgba(0, 229, 255, 0.15); color: var(--accent); transform: translateY(-3px); }
+        .button-group { display: flex; gap: 15px; flex-wrap: wrap; }
+        .btn-action-main, .btn-action-outline { 
+            padding: 10px 22px; 
+            border-radius: 6px; 
+            font-family: 'Montserrat', sans-serif; 
+            font-weight: 700; 
+            font-size: 0.9rem; 
+            text-decoration: none; 
+            display: inline-flex; 
+            align-items: center; 
+            gap: 8px; 
+            cursor: pointer; 
+            transition: 0.3s; 
+            border: none;
+        }
+        .btn-action-main { background: var(--accent); color: #000; }
+        .btn-action-main:hover { background: #06b6d4; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0, 229, 255, 0.3); }
+        .btn-action-outline { background: rgba(0, 0, 0, 0.4); border: 1px solid var(--accent); color: #fff; }
+        .btn-action-outline:hover { background: rgba(0, 229, 255, 0.15); color: var(--accent); transform: translateY(-2px); }
 
-        /* --- FLOATING SUBMIT BUTTON --- */
-        .floating-submit { position: fixed; bottom: 30px; right: 30px; z-index: 999; display: flex; align-items: center; gap: 10px; background: linear-gradient(135deg, #00E5FF, #0077b6); color: #000; padding: 14px 24px; border-radius: 50px; font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 0.9rem; text-decoration: none; box-shadow: 0 10px 25px rgba(0, 229, 255, 0.4); transition: 0.3s; animation: pulseGlow 2s infinite; }
-        .floating-submit:hover { transform: translateY(-5px) scale(1.05); color: #000; box-shadow: 0 15px 35px rgba(0, 229, 255, 0.7); }
-        .floating-submit i { font-size: 1.1rem; }
+        /* --- FLOATING "SUBMIT YOUR ARTICLE" BUTTON --- */
+        .sticky-submit-btn { 
+            position: fixed; 
+            bottom: 25px; 
+            right: 25px; 
+            z-index: 999; 
+            display: flex; 
+            align-items: center; 
+            gap: 8px; 
+            background: linear-gradient(135deg, #00E5FF, #0088cc); 
+            color: #000; 
+            padding: 12px 22px; 
+            border-radius: 50px; 
+            font-family: 'Montserrat', sans-serif; 
+            font-weight: 800; 
+            font-size: 0.85rem; 
+            text-decoration: none; 
+            box-shadow: 0 10px 25px rgba(0, 229, 255, 0.4); 
+            animation: pulseSubmit 2s infinite; 
+            transition: 0.3s;
+        }
+        .sticky-submit-btn:hover { 
+            transform: scale(1.05); 
+            color: #000; 
+            box-shadow: 0 12px 30px rgba(0, 229, 255, 0.7); 
+        }
 
-        @keyframes pulseGlow {
+        @keyframes pulseSubmit {
             0% { box-shadow: 0 0 10px rgba(0,229,255,0.4); }
-            50% { box-shadow: 0 0 25px rgba(0,229,255,0.8); }
+            50% { box-shadow: 0 0 22px rgba(0,229,255,0.8); }
             100% { box-shadow: 0 0 10px rgba(0,229,255,0.4); }
         }
 
+        /* --- PDF / DRIVE VIEWER MODAL --- */
+        .doc-modal { 
+            display: none; 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100vw; 
+            height: 100vh; 
+            background: rgba(0, 0, 0, 0.95); 
+            z-index: 999999; 
+            flex-direction: column; 
+        }
+        .doc-modal-header { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 10px 20px; 
+            background: #0d1527; 
+            border-bottom: 1px solid rgba(0, 229, 255, 0.2); 
+        }
+        .doc-modal-header .doc-title { 
+            color: #fff; 
+            font-family: 'Montserrat', sans-serif; 
+            font-size: 0.95rem; 
+            font-weight: 700; 
+        }
+        .doc-modal-close { 
+            cursor: pointer; 
+            font-size: 28px; 
+            color: #ff4d4d; 
+            font-weight: bold; 
+            line-height: 1; 
+        }
+        .doc-modal-body { flex: 1; width: 100%; height: 100%; }
+        .doc-modal-body iframe { width: 100%; height: 100%; border: none; }
+
         /* --- FOOTER --- */
-        footer { background: #020308; padding: 50px 5% 20px 5%; border-top: 1px solid rgba(255,255,255,0.05); position: relative; z-index: 2; margin-top: 40px;}
-        .footer-content { max-width: 900px; margin: auto; display: flex; align-items: center; justify-content: center; gap: 40px; padding-bottom: 30px; margin-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.1); }
-        .footer-logo img { width: 90px; height: 90px; border-radius: 50%; border: 2px solid var(--accent); object-fit: cover; }
-        .footer-details h2 { font-family: 'Montserrat', sans-serif; font-size: 1.6rem; color: #fff; font-weight: 800; }
-        .footer-links { display: flex; gap: 15px; flex-wrap: wrap; margin-top: 5px; }
-        .footer-links a { color: var(--text-dim); text-decoration: none; font-size: 0.85rem; }
-        .footer-links a:hover { color: var(--accent); }
-        .copyright { text-align: center; color: var(--text-dim); font-size: 0.85rem; }
+        footer { 
+            background: #020308; 
+            padding: 40px 5% 20px 5%; 
+            border-top: 1px solid rgba(255,255,255,0.05); 
+            position: relative; 
+            z-index: 1; 
+        }
+        .footer-wrap { 
+            max-width: 900px; 
+            margin: auto; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            gap: 30px; 
+            padding-bottom: 25px; 
+            margin-bottom: 15px; 
+            border-bottom: 1px solid rgba(255,255,255,0.08); 
+        }
+        .footer-wrap img { width: 80px; height: 80px; border-radius: 50%; border: 2px solid var(--accent); object-fit: cover;}
+        .footer-text h2 { font-family: 'Montserrat', sans-serif; font-size: 1.5rem; color: #fff; font-weight: 800; }
+        .footer-nav { display: flex; gap: 15px; flex-wrap: wrap; margin-top: 5px;}
+        .footer-nav a { color: var(--text-dim); text-decoration: none; font-size: 0.85rem;}
+        .footer-nav a:hover { color: var(--accent); }
+        .copyright { text-align: center; color: var(--text-dim); font-size: 0.8rem; }
 
-        /* --- FULLSCREEN VIEWER MODAL --- */
-        .viewer-modal { display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: rgba(0,0,0,0.92); z-index: 999999; flex-direction: column; }
-        .viewer-header { width: 100%; padding: 12px 25px; display: flex; justify-content: space-between; align-items: center; background: #080d1a; border-bottom: 1px solid rgba(0,229,255,0.2); }
-        .viewer-header span.title { color: #fff; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 1rem; }
-        .viewer-close { cursor: pointer; font-size: 28px; font-weight: bold; color: #ff4d4d; transition: 0.2s; }
-        .viewer-close:hover { color: #fff; }
-        .viewer-body { flex-grow: 1; width: 100%; display: flex; justify-content: center; align-items: center; padding: 15px; }
-        .viewer-body iframe { border: none; width: 100%; height: 100%; max-width: 1100px; background: #fff; border-radius: 8px; box-shadow: 0 5px 30px rgba(0,0,0,0.8); }
-
-        /* RESPONSIVE */
-        @media (max-width: 900px) {
-            .issue-card, .issue-card.reverse { flex-direction: column; text-align: center; padding: 30px 20px; }
-            .issue-cover-wrapper { max-width: 240px; margin: 0 auto; }
-            .article-highlights { text-align: left; }
-            .btn-group { justify-content: center; }
+        /* --- RESPONSIVE OPTIMIZATION --- */
+        @media (max-width: 850px) {
+            .issue-card { flex-direction: column; text-align: center; padding: 30px 20px; gap: 25px; }
+            .issue-cover-box { max-width: 220px; }
+            .article-checklist { text-align: left; }
+            .button-group { justify-content: center; }
             .hamburger { display: block; }
-            .nav-links { position: absolute; top: 100%; left: -100%; width: 100%; background: rgba(5,8,16,0.98); flex-direction: column; text-align: center; padding: 25px 0; border-bottom: 2px solid var(--accent); transition: 0.3s; }
+            .nav-links { 
+                position: absolute; 
+                top: 100%; 
+                left: -100%; 
+                width: 100%; 
+                background: rgba(5,8,16,0.98); 
+                flex-direction: column; 
+                text-align: center; 
+                padding: 25px 0; 
+                border-bottom: 2px solid var(--accent); 
+                transition: 0.3s; 
+            }
             .nav-links.active { left: 0; }
-            .floating-submit { bottom: 20px; right: 20px; padding: 10px 18px; font-size: 0.8rem; }
-            .footer-content { flex-direction: column; text-align: center; }
+            .footer-wrap { flex-direction: column; text-align: center; }
+            .sticky-submit-btn { bottom: 15px; right: 15px; padding: 10px 18px; font-size: 0.8rem; }
         }
     </style>
 </head>
@@ -124,17 +319,17 @@
 
     <canvas id="canvas-container"></canvas>
 
-    <!-- FLOATING SUBMIT BUTTON -->
-    <a href="mailto:rgcscienceclub@gmail.com?subject=ম্যাগাজিনের জন্য লেখা - প্যারাডক্স&body=নাম:%0Aশ্রেণি / প্রতিষ্ঠান:%0Aযোগাযোগ নম্বর:%0Aলেখার বিষয় / শিরোনাম:%0A%0Aআপনার লেখা এখানে লিখুন অথবা ডক/পিডিএফ ফাইল হিসেবে সংযুক্ত করুন:" class="floating-submit" title="Submit Your Article">
-        <i class="fa-solid fa-feather-pointed"></i> Submit Your Article
+    <!-- 1. STICKY SUBMIT ARTICLE BUTTON (Opens Mail Client with Bangla Subject) -->
+    <a href="mailto:rgcscienceclub@gmail.com?subject=ম্যাগাজিনের জন্য লেখা&body=লেখকের নাম:%0Aশ্রেণি / রোল:%0Aমোবাইল নম্বর:%0Aলেখার বিষয় ও শিরোনাম:%0A%0A(আপনার লেখাটি এখানে লিখুন অথবা ওয়ার্ড/পিডিএফ ফাইল হিসেবে সংযুক্ত করুন)" class="sticky-submit-btn">
+        <i class="fa-solid fa-pen-nib"></i> Submit Your Article
     </a>
 
-    <!-- HEADER / NAVIGATION -->
+    <!-- 2. NAVBAR / HEADER -->
     <header class="nav-header">
         <div class="notice-bar">
-            <span>ANNOUNCEMENT</span>
+            <span>NEWS</span>
             <marquee behavior="scroll" direction="left" scrollamount="6">
-                🔥 প্যারাডক্স দ্বিতীয় সংখ্যা (August Issue) এখন উন্মুক্ত! ম্যাগাজিনের জন্য আপনার মৌলিক লেখা পাঠাতে 'Submit Your Article' বাটনে ক্লিক করুন।
+                🔥 প্যারাডক্স দ্বিতীয় সংখ্যা (August Issue) এখন অনলাইনে উন্মুক্ত! পড়ার জন্য Read Now বা ডাউনলোডের জন্য Download Now বাটনে ক্লিক করুন।
             </marquee>
         </div>
         <nav>
@@ -150,104 +345,104 @@
         </nav>
     </header>
 
-    <!-- MAGAZINE HERO -->
+    <!-- 3. PAGE HERO -->
     <section class="mag-hero">
-        <span class="mag-tagline">Official Science Publication</span>
-        <h1>PARADOX <span>MAGAZINE</span></h1>
-        <p>বিজ্ঞান, প্রযুক্তি ও অনুসন্ধিৎসু মনের খোরাক নিয়ে আমাদের নিয়মিত ত্রৈমাসিক প্রকাশনা। প্রশ্ন করো, জানো এবং জানাও।</p>
+        <span class="mag-hero-badge">Official Science Magazine</span>
+        <h1>PARADOX <span>PUBLICATIONS</span></h1>
+        <p>বিজ্ঞান, প্রযুক্তি ও অনুসন্ধিৎসু মনের খোরাক নিয়ে প্রকাশিত আমাদের নিয়মিত ম্যাগাজিন। প্রশ্ন করো, জানো এবং জানাও।</p>
     </section>
 
-    <!-- MAIN MAGAZINE ISSUES -->
+    <!-- 4. MAGAZINE CONTENT SECTION -->
     <main class="magazine-section">
 
-        <!-- ISSUE 2: AUGUST ISSUE (TOP) -->
-        <div class="issue-card" data-aos="fade-up">
-            <div class="issue-cover-wrapper">
-                <img src="Paradox2.jpg" alt="PARADOX August Issue Cover" class="issue-cover" onerror="this.src='welcome.jpg'">
-                <div class="cover-glow"></div>
+        <!-- ===== TOP: AUGUST ISSUE ===== -->
+        <article class="issue-card">
+            <div class="issue-cover-box">
+                <img src="Paradox2.jpg" alt="PARADOX August Issue" onerror="this.src='welcome.jpg'">
             </div>
             
-            <div class="issue-content">
-                <span class="issue-badge">Latest Release • August Issue</span>
+            <div class="issue-details">
+                <span class="issue-pill">Volume 2.0 • August Issue (Latest)</span>
                 <h2>PARADOX: The Dawn of Innovation</h2>
-                <p class="issue-desc">
-                    প্যারাডক্সের এই দ্বিতীয় সংখ্যায় মহাবিশ্বের রহস্যময় পদার্থবিজ্ঞান থেকে শুরু করে ফলিত স্নায়ুবিজ্ঞান ও আধুনিক প্রযুক্তির রোমাঞ্চকর আবিষ্কারগুলো তুলে ধরা হয়েছে। জটিল বিজ্ঞানকে সহজবোধ্য ভাষায় অনুধাবন করার একটি অনবদ্য প্রয়াস।
+                <p class="issue-summary">
+                    প্যারাডক্সের এই দ্বিতীয় সংখ্যায় আধুনিক পদার্থবিজ্ঞান, মহাবিশ্বের রহস্যময় জ্যামিতি এবং সাম্প্রতিক প্রযুক্তিগত অগ্রগতি নিয়ে বিস্তারিত আলোচনা করা হয়েছে। নতুন গবেষক ও শিক্ষার্থীদের ভাবনার দিগন্ত উন্মোচনে এই সংখ্যার মূল বিষয়বস্তুসমূহ:
                 </p>
                 
-                <ul class="article-highlights">
-                    <li><i class="fa-solid fa-circle-check"></i> Fields Medal 2026 এর গল্প</li>
-                    <li><i class="fa-solid fa-circle-check"></i> সময় কেন দ্রুত বয়ে যায়?</li>
-                    <li><i class="fa-solid fa-circle-check"></i> টাইম ট্রাভেল ও প্যারাডক্স</li>
-                    <li><i class="fa-solid fa-circle-check"></i> ডার্ক মেটারের অন্তর্নিহিত শক্তি</li>
-                    <li><i class="fa-solid fa-circle-check"></i> মৌলিক বৈজ্ঞানিক কল্পকাহিনী</li>
-                    <li><i class="fa-solid fa-circle-check"></i> ব্রেন-স্টর্মিং অলিম্পিয়াড প্রবলেমস</li>
+                <ul class="article-checklist">
+                    <li><i class="fa-solid fa-check"></i> Fields Medal 2026 এর বিশেষ বিশ্লেষণ</li>
+                    <li><i class="fa-solid fa-check"></i> সময় কেন দ্রুত বয়ে যায়?</li>
+                    <li><i class="fa-solid fa-check"></i> টাইম ট্রাভেল ও প্যারাডক্সের সমাধান</li>
+                    <li><i class="fa-solid fa-check"></i> মৌলিক বৈজ্ঞানিক কল্পকাহিনী (Sci-Fi)</li>
+                    <li><i class="fa-solid fa-check"></i> পৃথিবীর অজানা ভূতাত্ত্বিক রহস্য</li>
+                    <li><i class="fa-solid fa-check"></i> ব্রেনস্টর্মিং অলিম্পিয়াড সমস্যা</li>
                 </ul>
 
-                <div class="btn-group">
-                    <button class="btn-main" onclick="openViewer('https://heyzine.com/flip-book/0868b9e21b.html', 'PARADOX August Issue (Interactive)')">
+                <div class="button-group">
+                    <!-- Read Now Button (Opens Drive Doc/PDF Viewer) -->
+                    <button class="btn-action-main" onclick="openDocViewer('https://drive.google.com/file/d/1rsoaQun29OE9lBTUQ2BwfJuM34ZpN7wd/preview', 'PARADOX August Issue')">
                         <i class="fa-solid fa-book-open"></i> Read Now
                     </button>
-                    <a href="https://raw.githubusercontent.com/Ahsan-Habib-01/rgc-science-club/main/Paradox_August_Issue.pdf" download="Paradox_August_Issue.pdf" target="_blank" class="btn-outline">
-                        <i class="fa-solid fa-cloud-arrow-down"></i> Download PDF
+                    <!-- Download Button -->
+                    <a href="https://raw.githubusercontent.com/Ahsan-Habib-01/rgc-science-club/main/Paradox_August_Issue.pdf" download="Paradox_August_Issue.pdf" target="_blank" class="btn-action-outline">
+                        <i class="fa-solid fa-download"></i> Download Now
                     </a>
                 </div>
             </div>
-        </div>
+        </article>
 
-        <!-- ISSUE 1: MARCH ISSUE (BOTTOM) -->
-        <div class="issue-card reverse" data-aos="fade-up">
-            <div class="issue-cover-wrapper">
-                <img src="Paradox1.jpg" alt="PARADOX March Issue Cover" class="issue-cover" onerror="this.src='publish.jpg'">
-                <div class="cover-glow"></div>
+        <!-- ===== BOTTOM: MARCH ISSUE ===== -->
+        <article class="issue-card">
+            <div class="issue-cover-box">
+                <img src="publish.jpg" alt="PARADOX March Issue" onerror="this.src='welcome.jpg'">
             </div>
             
-            <div class="issue-content">
-                <span class="issue-badge">First Edition • March Issue</span>
+            <div class="issue-details">
+                <span class="issue-pill">Volume 1.0 • March Issue</span>
                 <h2>PARADOX: Question Everything</h2>
-                <p class="issue-desc">
-                    রংপুর সরকারি কলেজ বিজ্ঞান ক্লাবের প্রথম পদচিহ্ন। বিজ্ঞানের প্রতি শিক্ষার্থীদের সহজাত কৌতূহল ও উদ্ভাবনী ধারণাকে এক সুতোয় বাঁধার প্রথম সংখ্যা, যা পাঠকদের মাঝে ব্যাপক সাড়া ফেলেছিল।
+                <p class="issue-summary">
+                    রংপুর সরকারি কলেজ বিজ্ঞান ক্লাবের প্রথম পদচিহ্ন। শিক্ষার্থীদের বিজ্ঞানমনস্ক দৃষ্টিভঙ্গি গড়ে তোলা এবং মৌলিক বিষয়গুলোর গভীরে পৌঁছানোর আহ্বান নিয়ে প্রকাশিত প্রথম সংখ্যা।
                 </p>
                 
-                <ul class="article-highlights">
-                    <li><i class="fa-solid fa-circle-check"></i> কোয়ান্টাম কম্পিউটিং এর প্রাথমিক পাঠ</li>
-                    <li><i class="fa-solid fa-circle-check"></i> আমাদের পৃথিবীর কিছু অজানা রহস্য</li>
-                    <li><i class="fa-solid fa-circle-check"></i> কৃত্রিম বুদ্ধিমত্তা ও নিউরাল নেটওয়ার্ক</li>
-                    <li><i class="fa-solid fa-circle-check"></i> জীববিজ্ঞান ও জিন প্রকৌশলের ভবিষ্যৎ</li>
+                <ul class="article-checklist">
+                    <li><i class="fa-solid fa-check"></i> কোয়ান্টাম কম্পিউটিং ও কিউবিট ধারণা</li>
+                    <li><i class="fa-solid fa-check"></i> নিউরাল নেটওয়ার্ক ও এআই মেকানিজম</li>
+                    <li><i class="fa-solid fa-check"></i> ডার্ক ম্যাটার ও কসমিক এনার্জি</li>
+                    <li><i class="fa-solid fa-check"></i> জিন প্রকৌশল ও ফলিত জীববিজ্ঞানের ভবিষ্যৎ</li>
                 </ul>
 
-                <div class="btn-group">
-                    <button class="btn-main" onclick="openViewer('https://drive.google.com/file/d/1rsoaQun29OE9lBTUQ2BwfJuM34ZpN7wd/preview', 'PARADOX March Issue (Viewer)')">
+                <div class="button-group">
+                    <!-- Read Now Button (March Issue) -->
+                    <button class="btn-action-main" onclick="openDocViewer('https://drive.google.com/file/d/1rsoaQun29OE9lBTUQ2BwfJuM34ZpN7wd/preview', 'PARADOX March Issue')">
                         <i class="fa-solid fa-book-open"></i> Read Now
                     </button>
-                    <a href="https://raw.githubusercontent.com/Ahsan-Habib-01/rgc-science-club/main/Paradox_August_Issue.pdf" download="Paradox_March_Issue.pdf" target="_blank" class="btn-outline">
-                        <i class="fa-solid fa-cloud-arrow-down"></i> Download PDF
+                    <!-- Download Button -->
+                    <a href="https://raw.githubusercontent.com/Ahsan-Habib-01/rgc-science-club/main/Paradox_August_Issue.pdf" download="Paradox_March_Issue.pdf" target="_blank" class="btn-action-outline">
+                        <i class="fa-solid fa-download"></i> Download Now
                     </a>
                 </div>
             </div>
-        </div>
+        </article>
 
     </main>
 
-    <!-- FULLSCREEN VIEWER MODAL -->
-    <div id="magazineViewerModal" class="viewer-modal">
-        <div class="viewer-header">
-            <span class="title" id="viewerTitle">PARADOX Magazine Viewer</span>
-            <span class="viewer-close" onclick="closeViewer()">&times;</span>
+    <!-- 5. GOOGLE DRIVE / DOC VIEWER MODAL -->
+    <div id="docViewerModal" class="doc-modal">
+        <div class="doc-modal-header">
+            <span class="doc-title" id="docViewerTitle">PARADOX PDF Viewer</span>
+            <span class="doc-modal-close" onclick="closeDocViewer()">&times;</span>
         </div>
-        <div class="viewer-body">
-            <iframe id="viewerFrame" src="" allowfullscreen></iframe>
+        <div class="doc-modal-body">
+            <iframe id="docIframe" src="" allowfullscreen></iframe>
         </div>
     </div>
 
-    <!-- FOOTER -->
+    <!-- 6. FOOTER -->
     <footer>
-        <div class="footer-content">
-            <div class="footer-logo">
-                <img src="logo.jpg" alt="Logo" onerror="this.src='welcome.jpg'">
-            </div>
-            <div class="footer-details">
+        <div class="footer-wrap">
+            <img src="logo.jpg" alt="RGC Science Club" onerror="this.src='welcome.jpg'">
+            <div class="footer-text">
                 <h2>RGC Science Club</h2>
-                <div class="footer-links">
+                <div class="footer-nav">
                     <a href="index.html#home">Home</a>
                     <a href="magazine.html">Magazine</a>
                     <a href="index.html#articles">Articles</a>
@@ -261,34 +456,37 @@
         </div>
     </footer>
 
-    <!-- SCRIPTS -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        AOS.init({ once: true, offset: 50 });
-
+    <!-- 7. JAVASCRIPT LOGIC -->
+<script>
+        // Hamburger Menu Toggle
         function toggleMenu() {
             document.getElementById('navMenu').classList.toggle('active');
         }
 
-        // Viewer Lightbox Functions
-        const modal = document.getElementById("magazineViewerModal");
-        const frame = document.getElementById("viewerFrame");
-        const titleText = document.getElementById("viewerTitle");
+        // Drive / PDF Modal Viewer Logic
+        const modal = document.getElementById("docViewerModal");
+        const iframe = document.getElementById("docIframe");
+        const title = document.getElementById("docViewerTitle");
 
-        function openViewer(url, title) {
-            titleText.innerText = title;
-            frame.src = url;
+        function openDocViewer(docUrl, issueTitle) {
+            title.innerText = issueTitle;
+            iframe.src = docUrl;
             modal.style.display = "flex";
             document.body.style.overflow = "hidden";
         }
 
-        function closeViewer() {
+        function closeDocViewer() {
             modal.style.display = "none";
-            frame.src = "";
+            iframe.src = "";
             document.body.style.overflow = "auto";
         }
 
-        // Background Particle System
+        // ESC Key to close modal
+        window.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeDocViewer();
+        });
+
+        // Background Particle Simulation
         const canvas = document.getElementById("canvas-container");
         const ctx = canvas.getContext("2d");
         let canvasWidth = window.innerWidth;
@@ -330,4 +528,19 @@
         function initParticles() { 
             particlesArray = []; 
             let count = window.innerWidth < 768 ? 25 : 60; 
-            for (l
+            for (let i = 0; i < count; i++) particlesArray.push(new Particle()); 
+        }
+        
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let i = 0; i < particlesArray.length; i++) {
+                particlesArray[i].update(); 
+                particlesArray[i].draw();
+            } 
+            requestAnimationFrame(animateParticles);
+        }
+        initParticles(); 
+        animateParticles();
+    </script>
+</body>
+</html>
